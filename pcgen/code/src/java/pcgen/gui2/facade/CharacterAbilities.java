@@ -29,10 +29,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.swing.SwingUtilities;
-
-import pcgen.cdom.base.CDOMObjectUtilities;
 import pcgen.cdom.base.Category;
 import pcgen.cdom.base.Constants;
 import pcgen.cdom.content.CNAbility;
@@ -46,14 +43,13 @@ import pcgen.cdom.facet.GrantedAbilityFacet;
 import pcgen.cdom.facet.event.DataFacetChangeEvent;
 import pcgen.cdom.facet.event.DataFacetChangeListener;
 import pcgen.cdom.facet.input.ActiveAbilityFacet;
-import pcgen.cdom.helper.CategorizedAbilitySelection;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
 import pcgen.core.AbilityUtilities;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.RuleConstants;
-import pcgen.core.chooser.ChooserUtilities;
 import pcgen.core.display.CharacterDisplay;
 import pcgen.core.facade.AbilityCategoryFacade;
 import pcgen.core.facade.AbilityFacade;
@@ -199,8 +195,7 @@ public class CharacterAbilities
 				new LinkedHashMap<AbilityCategoryFacade, DefaultListFacade<AbilityFacade>>();
 		DefaultListFacade<AbilityCategoryFacade> workingActiveCategories = new DefaultListFacade<AbilityCategoryFacade>();
 
-		ListFacade<AbilityCategoryFacade> categories = dataSetFacade.getAbilityCategories();
-		for (AbilityCategoryFacade category : categories)
+		for (AbilityCategoryFacade category : dataSetFacade.getAbilities().getKeys())
 		{
 			AbilityCategory cat = (AbilityCategory) category;
 
@@ -274,7 +269,7 @@ public class CharacterAbilities
 		AbilityCategory category = (AbilityCategory) cat;
 		
 		int numSelections = theCharacter.getAvailableAbilityPool(category).intValue();
-		if (category.getVisibility().isVisibleTo(View.VISIBLE_EXPORT))
+		if (category.getVisibility().isVisibleTo(View.HIDDEN_DISPLAY))
 		{
 			// Hide todos for categories that should not be displayed
 			numSelections = 0;
@@ -311,11 +306,10 @@ public class CharacterAbilities
 	 */
 	private int getCatIndex(AbilityCategory abilityCategory, ListFacade<AbilityCategoryFacade> catList)
 	{
-		ListFacade<AbilityCategoryFacade> allCategories = dataSetFacade.getAbilityCategories();
+		Set<AbilityCategoryFacade> allCategories = dataSetFacade.getAbilities().getKeys();
 		int index = 0;
-		for (int i = 0; i < allCategories.getSize(); i++)
+		for (AbilityCategoryFacade compCat : allCategories)
 		{
-			AbilityCategoryFacade compCat = allCategories.getElementAt(i);
 			if (compCat == abilityCategory || index >= catList.getSize())
 			{
 				break;
@@ -340,30 +334,31 @@ public class CharacterAbilities
 	private void addCategorisedAbility(AbilityCategory cat,
 		Ability ability, Nature nature, Map<AbilityCategoryFacade, DefaultListFacade<AbilityFacade>> workingAbilityListMap)
 	{
-		List<CategorizedAbilitySelection> cas = new ArrayList<CategorizedAbilitySelection>();
+		List<CNAbilitySelection> cas = new ArrayList<CNAbilitySelection>();
 		if (ability.getSafe(ObjectKey.MULTIPLE_ALLOWED))
 		{
 			List<String> choices = theCharacter.getAssociationList(ability);
 			if (choices == null || choices.isEmpty())
 			{
-				cas.add(new CategorizedAbilitySelection(cat, ability, nature,
+				//TODO shouldn't this be a warning - the core should not let this happen?
+				cas.add(new CNAbilitySelection(new CNAbility(cat, ability, nature),
 					""));
 			}
 			else
 			{
 				for (String choice : choices)
 				{
-					cas.add(new CategorizedAbilitySelection(cat, ability,
-						nature, choice));
+					cas.add(new CNAbilitySelection(new CNAbility(cat, ability,
+						nature), choice));
 				}
 			}
 			
 		}
 		else
 		{
-			cas.add(new CategorizedAbilitySelection(cat, ability, nature));
+			cas.add(new CNAbilitySelection(new CNAbility(cat, ability, nature)));
 		}
-		for (CategorizedAbilitySelection sel : cas)
+		for (CNAbilitySelection sel : cas)
 		{
 			addElement(workingAbilityListMap, sel);
 		}
@@ -372,14 +367,14 @@ public class CharacterAbilities
 	private void removeCategorisedAbility(AbilityCategory cat,
 		Ability ability, Nature nature)
 	{
-		CategorizedAbilitySelection cas;
+		CNAbilitySelection cas;
 		if (ability.getSafe(ObjectKey.MULTIPLE_ALLOWED))
 		{
-			cas = new CategorizedAbilitySelection(cat, ability, nature, "");
+			cas = new CNAbilitySelection(new CNAbility(cat, ability, nature), "");
 		}
 		else
 		{
-			cas = new CategorizedAbilitySelection(cat, ability, nature);
+			cas = new CNAbilitySelection(new CNAbility(cat, ability, nature));
 		}
 		removeElement(cas);
 	}
@@ -417,11 +412,8 @@ public class CharacterAbilities
 
 			theCharacter.getSpellList();
 
-			Ability pcAbility =
-					theCharacter.addAbilityNeedCheck(category, ability);
-				
-			AbilityUtilities.finaliseAbility(pcAbility, Constants.EMPTY_STRING,
-					theCharacter, category);
+			AbilityUtilities.driveChooseAndAdd(new CNAbility(category, ability,
+				Nature.NORMAL), theCharacter, true);
 		}
 		catch (Exception exc)
 		{
@@ -476,49 +468,8 @@ public class CharacterAbilities
 
 			if (pcAbility != null)
 			{
-				// how many sub-choices to make
-				double abilityCount =
-						(theCharacter
-							.getSelectCorrectedAssociationCount(pcAbility) * pcAbility
-							.getSafe(ObjectKey.SELECTION_COST).doubleValue());
-
-				boolean adjustedAbilityPool = false;
-
-				// adjust the associated List
-				if (pcAbility.getSafe(ObjectKey.MULTIPLE_ALLOWED))
-				{
-					// Get modChoices to adjust the associated list and Feat Pool
-					adjustedAbilityPool =
-							ChooserUtilities.modChoices(pcAbility,
-								new ArrayList<String>(),
-								new ArrayList<String>(), theCharacter, false,
-								theCategory);
-				}
-
-				// if no sub choices made (i.e. all of them removed in Chooser box),
-				// then remove the Feat
-				boolean removed = false;
-				boolean result =
-						pcAbility.getSafe(ObjectKey.MULTIPLE_ALLOWED)
-							? theCharacter.hasAssociations(pcAbility) : false;
-
-				if (!result)
-				{
-					removed =
-							theCharacter.removeRealAbility(theCategory,
-								pcAbility);
-					CDOMObjectUtilities.removeAdds(pcAbility, theCharacter);
-					CDOMObjectUtilities
-						.restoreRemovals(pcAbility, theCharacter);
-				}
-
-				if (!adjustedAbilityPool
-					&& (theCategory == AbilityCategory.FEAT))
-				{
-					AbilityUtilities.adjustPool(pcAbility, theCharacter, false,
-						abilityCount, removed);
-				}
-
+				CNAbility cna = new CNAbility(theCategory, pcAbility, Nature.NORMAL);
+				AbilityUtilities.driveChooseAndAdd(cna, theCharacter, false);
 				theCharacter.adjustMoveRates();
 			}
 		}
@@ -783,8 +734,9 @@ public class CharacterAbilities
 		return true;
 	}
 
-	private void addElement(Map<AbilityCategoryFacade, DefaultListFacade<AbilityFacade>> workingAbilityListMap, CategorizedAbilitySelection cas)
+	private void addElement(Map<AbilityCategoryFacade, DefaultListFacade<AbilityFacade>> workingAbilityListMap, CNAbilitySelection cnas)
 	{
+		CNAbility cas = cnas.getCNAbility();
 		Ability ability = cas.getAbility();
 		if (!ability.getSafe(ObjectKey.VISIBILITY).isVisibleTo(View.VISIBLE_DISPLAY))
 		{
@@ -804,8 +756,9 @@ public class CharacterAbilities
 		}
 	}
 
-	private void removeElement(CategorizedAbilitySelection cas)
+	private void removeElement(CNAbilitySelection cnas)
 	{
+		CNAbility cas = cnas.getCNAbility();
 		Ability ability = cas.getAbility();
 		AbilityCategoryFacade cat = (AbilityCategoryFacade) cas.getAbilityCategory();
 		DefaultListFacade<AbilityFacade> listFacade = abilityListMap.get(cat);
@@ -821,12 +774,12 @@ public class CharacterAbilities
 	 * the character's list of direct abilities.
 	 */
 	private final class DirectAbilityChangeHandler implements
-			DataFacetChangeListener<CharID, CategorizedAbilitySelection>
+			DataFacetChangeListener<CharID, CNAbilitySelection>
 	{
 		@SuppressWarnings("nls")
 		@Override
 		public void dataAdded(
-			DataFacetChangeEvent<CharID, CategorizedAbilitySelection> dfce)
+			DataFacetChangeEvent<CharID, CNAbilitySelection> dfce)
 		{
 			if (dfce.getCharID() != charID)
 			{
@@ -836,35 +789,37 @@ public class CharacterAbilities
 //					+ dfce.getCharID());
 				return;
 			}
-			CategorizedAbilitySelection cas = dfce.getCDOMObject();
+			CNAbilitySelection cnas = dfce.getCDOMObject();
+			CNAbility cas = cnas.getCNAbility();
 			if (Logging.isDebugMode())
 			{
 				Logging.debugPrint("Got direct ability added of "
 					+ cas.getAbilityKey() + " for cat "
 					+ cas.getAbilityCategory());
 			}
-			addElement(abilityListMap, cas);
+			addElement(abilityListMap, cnas);
 			updateAbilityCategoryLater(cas.getAbilityCategory());
 		}
 
 		@SuppressWarnings("nls")
 		@Override
 		public void dataRemoved(
-			DataFacetChangeEvent<CharID, CategorizedAbilitySelection> dfce)
+			DataFacetChangeEvent<CharID, CNAbilitySelection> dfce)
 		{
 			if (dfce.getCharID() != charID)
 			{
 				// The change notification is not for this character, so ignore it.
 				return;
 			}
-			CategorizedAbilitySelection cas = dfce.getCDOMObject();
+			CNAbilitySelection cnas = dfce.getCDOMObject();
+			CNAbility cas = cnas.getCNAbility();
 			if (Logging.isDebugMode())
 			{
 				Logging.debugPrint("Got direct ability removed of "
 					+ cas.getAbilityKey() + " for cat "
 					+ cas.getAbilityCategory());
 			}
-			removeElement(cas);
+			removeElement(cnas);
 			updateAbilityCategoryLater(cas.getAbilityCategory());
 		}
 	}
@@ -874,11 +829,11 @@ public class CharacterAbilities
 	 * the character's list of granted abilities.
 	 */
 	private final class GrantedAbilityChangeHandler implements
-			DataFacetChangeListener<CharID, Ability>
+			DataFacetChangeListener<CharID, CNAbilitySelection>
 	{
 		@SuppressWarnings("nls")
 		@Override
-		public void dataAdded(DataFacetChangeEvent<CharID, Ability> dfce)
+		public void dataAdded(DataFacetChangeEvent<CharID, CNAbilitySelection> dfce)
 		{
 			if (dfce.getCharID() != charID)
 			{
@@ -898,7 +853,7 @@ public class CharacterAbilities
 
 		@SuppressWarnings("nls")
 		@Override
-		public void dataRemoved(DataFacetChangeEvent<CharID, Ability> dfce)
+		public void dataRemoved(DataFacetChangeEvent<CharID, CNAbilitySelection> dfce)
 		{
 			if (dfce.getCharID() != charID)
 			{

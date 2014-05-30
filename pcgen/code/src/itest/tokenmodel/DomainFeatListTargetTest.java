@@ -21,10 +21,11 @@ import java.util.Collection;
 
 import org.junit.Test;
 
+import pcgen.cdom.content.CNAbility;
 import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.facet.FacetLibrary;
 import pcgen.cdom.facet.input.DomainInputFacet;
-import pcgen.cdom.helper.CategorizedAbilitySelection;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.cdom.helper.ClassSource;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
@@ -78,22 +79,23 @@ public class DomainFeatListTargetTest extends AbstractTokenModelTest
 			fail("Test Setup Failed");
 		}
 		finishLoad();
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 		ClassSource classSource = new ClassSource(pcc);
 
 		domainInputFacet.directSet(id, source, sel, classSource);
 		assertTrue(containsExpected());
-		assertEquals(1, directAbilityFacet.getCount(id));
+		assertEquals(1, directAbilityFacet.size(id));
 		domainInputFacet.remove(id, source);
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 	}
 
 	private boolean containsExpected()
 	{
-		Collection<CategorizedAbilitySelection> casSet =
+		Collection<CNAbilitySelection> casSet =
 				directAbilityFacet.getSet(id);
-		for (CategorizedAbilitySelection cas : casSet)
+		for (CNAbilitySelection cnas : casSet)
 		{
+			CNAbility cas = cnas.getCNAbility();
 			boolean featExpected =
 					cas.getAbilityCategory() == AbilityCategory.FEAT;
 			boolean abilityExpected =
@@ -101,7 +103,7 @@ public class DomainFeatListTargetTest extends AbstractTokenModelTest
 						context.ref.silentlyGetConstructedCDOMObject(
 							Ability.class, AbilityCategory.FEAT, "Granted"));
 			boolean natureExpected = cas.getNature() == Nature.AUTOMATIC;
-			boolean selectionExpected = "English".equals(cas.getSelection());
+			boolean selectionExpected = "English".equals(cnas.getSelection());
 			if (featExpected && abilityExpected && natureExpected
 				&& selectionExpected)
 			{

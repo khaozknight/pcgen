@@ -17,9 +17,9 @@
  */
 package tokenmodel.testsupport;
 
-import pcgen.cdom.helper.CategorizedAbilitySelection;
+import pcgen.cdom.helper.CNAbilitySelection;
 
 public interface CASAssocCheck
 {
-	boolean check(CategorizedAbilitySelection cas);
+	boolean check(CNAbilitySelection cas);
 }

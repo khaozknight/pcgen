@@ -30,10 +30,14 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import pcgen.cdom.base.CDOMReference;
+import pcgen.cdom.base.UserSelection;
+import pcgen.cdom.content.CNAbility;
+import pcgen.cdom.enumeration.Nature;
+import pcgen.cdom.enumeration.ObjectKey;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.cdom.reference.ReferenceUtilities;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
-import pcgen.core.AbilityUtilities;
 import pcgen.core.Globals;
 import pcgen.core.Kit;
 import pcgen.core.PlayerCharacter;
@@ -53,7 +57,7 @@ public final class KitAbilities extends BaseKit
 
 	// These members store the state of an instance of this class.  They are
 	// not cloned.
-	private transient List<AbilitySelection> abilitiesToAdd = null;
+	private transient List<CNAbilitySelection> abilitiesToAdd = null;
 	private AbilityCategory category;
 
 	/**
@@ -121,7 +125,7 @@ public final class KitAbilities extends BaseKit
 	public boolean testApply(Kit aKit, PlayerCharacter aPC,
 		List<String> warnings)
 	{
-		abilitiesToAdd = new ArrayList<AbilitySelection>();
+		abilitiesToAdd = new ArrayList<CNAbilitySelection>();
 		double minCost = Double.MAX_VALUE;
 		List<AbilitySelection> available = new ArrayList<AbilitySelection>();
 		for (CDOMReference<Ability> ref : abilities)
@@ -140,7 +144,7 @@ public final class KitAbilities extends BaseKit
 				{
 					minCost = a.getCost();
 				}
-				if (choice == null)
+				if ((choice == null) && a.getSafe(ObjectKey.MULTIPLE_ALLOWED))
 				{
 					available.add(new AbilitySelection(a, ""));
 				}
@@ -225,8 +229,10 @@ public final class KitAbilities extends BaseKit
 			}
 			else
 			{
-				abilitiesToAdd.add(as);
-				AbilityUtilities.modAbility(aPC, ability, as.selection, category);
+				CNAbility cna = new CNAbility(category, ability, Nature.NORMAL);
+				CNAbilitySelection cnas = new CNAbilitySelection(cna, as.selection);
+				abilitiesToAdd.add(cnas);
+				aPC.addAbility(cnas, UserSelection.getInstance(), this);
 			}
 		}
 
@@ -243,9 +249,9 @@ public final class KitAbilities extends BaseKit
 	@Override
 	public void apply(PlayerCharacter aPC)
 	{
-		for (AbilitySelection as : abilitiesToAdd)
+		for (CNAbilitySelection cnas : abilitiesToAdd)
 		{
-			AbilityUtilities.modAbility(aPC, as.ability, as.selection, category);
+			aPC.addAbility(cnas, UserSelection.getInstance(), this);
 			
 			if (isFree())
 			{

@@ -144,7 +144,6 @@ public class ExportHandlerTest extends AbstractCharacterTestCase
 		knowledge[0].put(ObjectKey.KEY_STAT, intel);
 		character.setSkillOrder(knowledge[0], 2);
 		Globals.getContext().ref.importObject(knowledge[0]);
-		character.addSkill(knowledge[0]);
 		SkillRankControl.modRanks(8.0, myClass, true, character, knowledge[0]);
 
 		knowledge[1] = new Skill();
@@ -154,7 +153,6 @@ public class ExportHandlerTest extends AbstractCharacterTestCase
 		knowledge[1].put(ObjectKey.KEY_STAT, intel);
 		character.setSkillOrder(knowledge[1], 3);
 		Globals.getContext().ref.importObject(knowledge[1]);
-		character.addSkill(knowledge[1]);
 		SkillRankControl.modRanks(5.0, myClass, true, character, knowledge[1]);
 
 		tumble = new Skill();
@@ -164,7 +162,6 @@ public class ExportHandlerTest extends AbstractCharacterTestCase
 		tumble.put(ObjectKey.KEY_STAT, dex);
 		character.setSkillOrder(tumble, 4);
 		Globals.getContext().ref.importObject(tumble);
-		character.addSkill(tumble);
 		SkillRankControl.modRanks(7.0, myClass, true, character, tumble);
 
 		balance = new Skill();
@@ -180,7 +177,6 @@ public class ExportHandlerTest extends AbstractCharacterTestCase
 			balance.addToListFor(ListKey.BONUS, aBonus);
 		}
 		Globals.getContext().ref.importObject(balance);
-		character.addSkill(balance);
 		SkillRankControl.modRanks(4.0, myClass, true, character, balance);
 
 		character.calcActiveBonuses();
@@ -214,37 +210,6 @@ public class ExportHandlerTest extends AbstractCharacterTestCase
 		intel.removeListFor(ListKey.BONUS);
 
 		super.tearDown();
-	}
-
-	/**
-	 * Test the output of old format tokens
-	 * @throws IOException
-	 */
-	public void testOldFormat() throws IOException
-	{
-		PlayerCharacter character = getCharacter();
-
-		// Test each token for old and new syntax processing.
-
-		assertEquals("New format SKILL Token", "2", evaluateToken(
-			"SKILL.0.MISC", character));
-		assertEquals("Old format SKILL Token", evaluateToken("SKILL.0.MISC",
-			character), evaluateToken("SKILL0.MISC", character));
-
-		assertEquals("New format SKILLLEVEL Token", "6", evaluateToken(
-			"SKILLLEVEL.1.TOTAL", character));
-
-		assertEquals("New format SKILLSUBSET Token", "KNOWLEDGE (RELIGION)",
-			evaluateToken("SKILLSUBSET.1.KNOWLEDGE.NAME", character));
-		assertEquals("Old format SKILLSUBSET Token", evaluateToken(
-			"SKILLSUBSET.1.KNOWLEDGE.NAME", character), evaluateToken(
-			"SKILLSUBSET1.KNOWLEDGE.NAME", character));
-
-		assertEquals("New format SKILLTYPE Token", "Balance", evaluateToken(
-			"SKILLTYPE.0.DEX.NAME", character));
-		assertEquals("Old format SKILLTYPE Token", evaluateToken(
-			"SKILLTYPE.0.DEX.NAME", character), evaluateToken(
-			"SKILLTYPE0.DEX.NAME", character));
 	}
 
 	/**
@@ -332,20 +297,20 @@ public class ExportHandlerTest extends AbstractCharacterTestCase
 		dummyFeat7.setName("7");
 		dummyFeat7.setCDOMCategory(AbilityCategory.FEAT);	
 		
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat1);
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat2);
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat3);
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat4);
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat5);
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat6);
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat7);
+		addAbility(AbilityCategory.FEAT, dummyFeat1);
+		addAbility(AbilityCategory.FEAT, dummyFeat2);
+		addAbility(AbilityCategory.FEAT, dummyFeat3);
+		addAbility(AbilityCategory.FEAT, dummyFeat4);
+		addAbility(AbilityCategory.FEAT, dummyFeat5);
+		addAbility(AbilityCategory.FEAT, dummyFeat6);
+		addAbility(AbilityCategory.FEAT, dummyFeat7);
 		
 		assertEquals("Test for evaluates correctly", "----------------",
 			evaluateToken(
-				"FOR.1,((24-STRLEN[SKILL.0])).INTVAL,24,-,NONE,NONE,1", pc));
+				"FOR.1,((24-STRLEN[SKILL.0])),24,-,NONE,NONE,1", pc));
 		assertEquals("Test for evaluates correctly", "                ",
 			evaluateToken(
-				"FOR.1,((24-STRLEN[SKILL.0])).INTVAL,24, ,NONE,NONE,1", pc));
+				"FOR.1,((24-STRLEN[SKILL.0])),24, ,NONE,NONE,1", pc));
 		
 		String tok = "DFOR." +
 		"0" +
@@ -424,10 +389,10 @@ public class ExportHandlerTest extends AbstractCharacterTestCase
 		dummyFeat4.setName("DummyFeat4");
 		dummyFeat4.setCDOMCategory(cat2);
 		
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat);
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, dummyFeat2);
-		pc.addAbilityNeedCheck(cat, dummyFeat3);
-		pc.addAbilityNeedCheck(cat2, dummyFeat4);
+		addAbility(AbilityCategory.FEAT, dummyFeat);
+		addAbility(AbilityCategory.FEAT, dummyFeat2);
+		addAbility(cat, dummyFeat3);
+		addAbility(cat2, dummyFeat4);
 		
 		assertEquals("Unsigned output", "7", evaluateToken(
 			"VAR.NegLevels.INTVAL", pc));

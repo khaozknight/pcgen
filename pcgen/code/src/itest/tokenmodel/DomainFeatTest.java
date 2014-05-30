@@ -21,14 +21,15 @@ import java.util.Collection;
 
 import org.junit.Test;
 
+import pcgen.cdom.content.CNAbility;
 import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.enumeration.SkillCost;
+import pcgen.cdom.facet.DirectAbilityFacet;
 import pcgen.cdom.facet.FacetLibrary;
-import pcgen.cdom.facet.base.AbstractListFacet;
 import pcgen.cdom.facet.input.DomainInputFacet;
 import pcgen.cdom.facet.input.GlobalAddedSkillCostFacet;
-import pcgen.cdom.helper.CategorizedAbilitySelection;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.cdom.helper.ClassSource;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
@@ -79,13 +80,13 @@ public class DomainFeatTest extends AbstractTokenModelTest
 			fail("Test Setup Failed");
 		}
 		finishLoad();
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 		ClassSource classSource = new ClassSource(pcc);
 		domainFacet.add(id, source, classSource);
 		assertTrue(containsExpected(null));
-		assertEquals(1, directAbilityFacet.getCount(id));
+		assertEquals(1, directAbilityFacet.size(id));
 		domainFacet.remove(id, source);
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 	}
 
 	@Test
@@ -108,13 +109,13 @@ public class DomainFeatTest extends AbstractTokenModelTest
 		//Do a second time!
 		token.parseToken(context, source, "Granted");
 		finishLoad();
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 		ClassSource classSource = new ClassSource(pcc);
 		domainFacet.add(id, source, classSource);
 		assertTrue(containsExpected(""));
-		assertEquals(2, directAbilityFacet.getCount(id));
+		assertEquals(2, directAbilityFacet.size(id));
 		domainFacet.remove(id, source);
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 	}
 
 	@Test
@@ -166,10 +167,11 @@ public class DomainFeatTest extends AbstractTokenModelTest
 
 	protected boolean containsExpected(String selection)
 	{
-		Collection<CategorizedAbilitySelection> casSet =
+		Collection<CNAbilitySelection> casSet =
 				getTargetFacet().getSet(id);
-		for (CategorizedAbilitySelection cas : casSet)
+		for (CNAbilitySelection cnas : casSet)
 		{
+			CNAbility cas = cnas.getCNAbility();
 			boolean categoryExpected =
 					cas.getAbilityCategory() == AbilityCategory.FEAT;
 			if (!categoryExpected)
@@ -194,7 +196,7 @@ public class DomainFeatTest extends AbstractTokenModelTest
 			}
 			if (selection == null)
 			{
-				if (cas.getSelection() != null)
+				if (cnas.getSelection() != null)
 				{
 					System.err.println("Selection Mismatch");
 					return false;
@@ -202,7 +204,7 @@ public class DomainFeatTest extends AbstractTokenModelTest
 			}
 			else
 			{
-				boolean selectionExpected = cas.getSelection().equals(selection);
+				boolean selectionExpected = cnas.getSelection().equals(selection);
 				if (!selectionExpected)
 				{
 					System.err.println("Selection Mismatch");
@@ -214,7 +216,7 @@ public class DomainFeatTest extends AbstractTokenModelTest
 		return false;
 	}
 
-	private AbstractListFacet<CategorizedAbilitySelection> getTargetFacet()
+	private DirectAbilityFacet getTargetFacet()
 	{
 		return directAbilityFacet;
 	}

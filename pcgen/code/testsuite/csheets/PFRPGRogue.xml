@@ -376,7 +376,7 @@ BIO
 			<used>108</used>
 			<unused>0</unused>
 		</skillpoints>
-		<list_mods>Acrobatics +28, Acrobatics (Jump) +24, Appraise +6, Bluff +14, Climb +9, Craft (Traps) +6, Diplomacy +7, Disable Device +29, Disguise +16, Escape Artist +21, Fly +8, Handle Animal +4, Intimidate +6, Knowledge (Dungeoneering) +6, Knowledge (Engineering) +3, Knowledge (Geography) +14, Knowledge (Local) +9, Linguistics +6, Perception +18, Perception (Trapfinding) +28, Profession (Cook) +5, Sense Motive +7, Sleight of Hand +11, Stealth +25, Swim +11, Use Magic Device +13</list_mods>
+		<list_mods>Acrobatics +28, Appraise +6, Bluff +14, Climb +9, Craft (Traps) +6, Diplomacy +7, Disable Device +29, Disguise +16, Escape Artist +21, Fly +8, Handle Animal +4, Intimidate +6, Knowledge (Dungeoneering) +6, Knowledge (Engineering) +3, Knowledge (Geography) +14, Knowledge (Local) +9, Linguistics +6, Perception +18, Profession (Cook) +5, Sense Motive +7, Sleight of Hand +11, Stealth +25, Swim +11, Use Magic Device +13</list_mods>
 		<max_class_skill_level>12</max_class_skill_level>
 		<max_cross_class_skill_level>12</max_cross_class_skill_level>
 		<skill>
@@ -395,23 +395,6 @@ BIO
 			<exclusive>N</exclusive>
 			<trained_total>28</trained_total>
 			<exclusive_total>28</exclusive_total>
-		</skill>
-		<skill>
-			<name>Acrobatics (Jump)</name>
-			<ranks>12.0</ranks>
-			<mod>12<!-- Mods from abilities, equipment, etc -->
-			</mod>
-			<skill_mod>24</skill_mod>
-			<ability_mod>6<!-- Mod from the key ability -->
-			</ability_mod>
-			<misc_mod>6<!-- This is a calc value of TOTAL-RANK-ABMOD -->
-			</misc_mod>
-			<ability>DEX</ability>
-			<synergy>Acrobatics (Jump)</synergy>
-			<untrained>Y</untrained>
-			<exclusive>N</exclusive>
-			<trained_total>24</trained_total>
-			<exclusive_total>24</exclusive_total>
 		</skill>
 		<skill>
 			<name>Appraise</name>
@@ -703,7 +686,7 @@ BIO
 			<exclusive_total>9</exclusive_total>
 		</skill>
 		<skill>
-			<name>Linguistics(Sylvan, Skald)</name>
+			<name>Linguistics(Skald, Sylvan)</name>
 			<ranks>1.0</ranks>
 			<mod>5<!-- Mods from abilities, equipment, etc -->
 			</mod>
@@ -713,7 +696,7 @@ BIO
 			<misc_mod>3<!-- This is a calc value of TOTAL-RANK-ABMOD -->
 			</misc_mod>
 			<ability>INT</ability>
-			<synergy>Linguistics(Sylvan, Skald)</synergy>
+			<synergy>Linguistics(Skald, Sylvan)</synergy>
 			<untrained>NO</untrained>
 			<exclusive>N</exclusive>
 			<trained_total>6</trained_total>
@@ -735,23 +718,6 @@ BIO
 			<exclusive>N</exclusive>
 			<trained_total>18</trained_total>
 			<exclusive_total>18</exclusive_total>
-		</skill>
-		<skill>
-			<name>Perception (Trapfinding)</name>
-			<ranks>12.0</ranks>
-			<mod>16<!-- Mods from abilities, equipment, etc -->
-			</mod>
-			<skill_mod>28</skill_mod>
-			<ability_mod>1<!-- Mod from the key ability -->
-			</ability_mod>
-			<misc_mod>15<!-- This is a calc value of TOTAL-RANK-ABMOD -->
-			</misc_mod>
-			<ability>WIS</ability>
-			<synergy>Perception (Trapfinding)</synergy>
-			<untrained>Y</untrained>
-			<exclusive>N</exclusive>
-			<trained_total>28</trained_total>
-			<exclusive_total>28</exclusive_total>
 		</skill>
 		<skill>
 			<name>Perform (Untrained)</name>
@@ -3765,9 +3731,20 @@ BIO
 		<ability_object>
 			<name>Crippling Strike</name>
 			<description>You can sneak attack opponents with such precision that your blows weaken and hamper them. An opponent damaged by one of your sneak attacks also takes 2 points of Strength damage.</description>
-			<type>ROGUECLASSABILITY.SPECIALATTACK.EXTRAORDINARY.ROGUETALENT.ROGUEADVANCEDTALENT.ATTACKOPTION</type>
+			<type>ROGUECLASSFEATURES.SPECIALATTACK.EXTRAORDINARY.ROGUETALENT.ROGUEADVANCEDTALENT.ATTACKOPTION</type>
 			<associated></associated>
 			<count>0</count>
+			<auto>F</auto>
+			<hidden>F</hidden>
+			<virtual>F</virtual>
+			<category>Special Ability</category>
+		</ability_object>
+		<ability_object>
+			<name>Guileful Polyglot (Aklo, Giant, Hallit, Varisian)</name>
+			<description>A rogue with this talent who has at least one rank in Linguistics gains four additional languages. A rogue with this talent who does not have any ranks in Linguistics gains two additional languages. If the rogue later gains ranks in Linguistics, she gains two additional languages, to a total of four additional languages above those granted by the Linguistics skill itself.</description>
+			<type>GUILEFULPOLYGOTLANG.SPECIALQUALITY.EXTRAORDINARY</type>
+			<associated>Aklo,Giant,Hallit,Varisian</associated>
+			<count>4</count>
 			<auto>F</auto>
 			<hidden>F</hidden>
 			<virtual>F</virtual>
@@ -3779,17 +3756,6 @@ BIO
 			<type>ROGUETALENT</type>
 			<associated></associated>
 			<count>0</count>
-			<auto>F</auto>
-			<hidden>F</hidden>
-			<virtual>F</virtual>
-			<category>Special Ability</category>
-		</ability_object>
-		<ability_object>
-			<name>Guileful Polyglot (Aklo, Hallit, Giant, Varisian)</name>
-			<description>A rogue with this talent who has at least one rank in Linguistics gains four additional languages. A rogue with this talent who does not have any ranks in Linguistics gains two additional languages. If the rogue later gains ranks in Linguistics, she gains two additional languages, to a total of four additional languages above those granted by the Linguistics skill itself.</description>
-			<type>GUILEFULPOLYGOTLANG.SPECIALQUALITY.EXTRAORDINARY</type>
-			<associated>Aklo,Hallit,Giant,Varisian</associated>
-			<count>4</count>
 			<auto>F</auto>
 			<hidden>F</hidden>
 			<virtual>F</virtual>
@@ -3809,7 +3775,7 @@ BIO
 		<ability_object>
 			<name>Trap Spotter</name>
 			<description>Whenever you come within 10 feet of a trap, you receive an immediate Perception skill check to notice the trap. This check should be made in secret by the GM.</description>
-			<type>ROGUECLASSABILITY.SPECIALQUALITY.EXTRAORDINARY.ROGUETALENT</type>
+			<type>ROGUECLASSFEATURES.SPECIALQUALITY.EXTRAORDINARY.ROGUETALENT</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>F</auto>
@@ -3818,6 +3784,17 @@ BIO
 			<category>Special Ability</category>
 		</ability_object>
 		<!-- Visible Automatic "Special Ability" Ability Objects -->
+		<ability_object>
+			<name>Evasion</name>
+			<description></description>
+			<type>ROGUECLASSFEATURES</type>
+			<associated></associated>
+			<count>0</count>
+			<auto>T</auto>
+			<hidden>F</hidden>
+			<virtual>F</virtual>
+			<category>Special Ability</category>
+		</ability_object>
 		<ability_object>
 			<name>Fearless</name>
 			<description>Halflings receive a +2 racial bonus on saving throws against fear. This bonus stacks with the bonus granted by Halfling Luck.</description>
@@ -3843,7 +3820,7 @@ BIO
 		<ability_object>
 			<name>Improved Evasion</name>
 			<description>You can avoid damage from many area-effect attacks. If you make a successful Reflex save against an attack that normally deals half damage on a successful save, you instead take no damage, and even on a failed saving throw you take only half damage. If you are helpless, you do not gain the benefit of improved evasion.</description>
-			<type>SPECIALQUALITY.EXTRAORDINARY.DEFENSIVE.ADVANCEDROGUETALENT.ROGUECLASSABILITY.RANGERCLASSABILITY.MONKCLASSABILITY</type>
+			<type>SPECIALQUALITY.EXTRAORDINARY.DEFENSIVE.ADVANCEDROGUETALENT.ROGUECLASSFEATURES.RANGERCLASSFEATURES.MONKCLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -3876,7 +3853,7 @@ BIO
 		<ability_object>
 			<name>Sneak Attack</name>
 			<description>If you can catch an opponent when he is unable to defend himself effectively from your attack, you can strike a vital spot for extra damage. Your attack deals 6d6 points of extra damage anytime your target would be denied a Dexterity bonus to AC, or when you flank your target. Should you score a critical hit with a sneak attack, this extra damage is not multiplied. Ranged attacks can count as sneak attacks only if the target is within 30 feet. With a weapon that deals nonlethal damage, you can make a sneak attack that deals nonlethal damage instead of lethal damage. You cannot use a weapon that deals lethal damage to deal nonlethal damage in a sneak attack, not even with the usual -4 penalty. You must be able to see the target well enough to pick out a vital spot and must be able to reach such a spot. You cannot sneak attack while striking a creature with concealment.</description>
-			<type>ROGUECLASSABILITY.SPECIALATTACK.EXTRAORDINARY.ATTACKOPTION</type>
+			<type>ROGUECLASSFEATURES.ALCHEMISTCLASSFEATURES.SPECIALATTACK.EXTRAORDINARY.ATTACKOPTION</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -3898,7 +3875,7 @@ BIO
 		<ability_object>
 			<name>Trapfinding</name>
 			<description>You add +6 to Perception skill checks made to locate traps and to Disable Device skill checks. You can use the Disable Device skill to disarm magical traps.</description>
-			<type>ROGUECLASSABILITY.SPECIALQUALITY.EXTRAORDINARY</type>
+			<type>ROGUECLASSFEATURES.RANGERCLASSFEATURES.SPECIALQUALITY.EXTRAORDINARY</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -3909,7 +3886,7 @@ BIO
 		<ability_object>
 			<name>Trap Sense</name>
 			<description>You gain a +4 bonus on Reflex saves made to avoid traps, and a +4 dodge bonus to AC against attacks made by traps.</description>
-			<type>SPECIALQUALITY.EXTRAORDINARY.DEFENSIVE.BARBARIANCLASSABILITY</type>
+			<type>SPECIALQUALITY.EXTRAORDINARY.DEFENSIVE.BARBARIANCLASSFEATURES.CLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -3931,7 +3908,7 @@ BIO
 		<ability_object>
 			<name>Weapon and Armor Proficiency</name>
 			<description>Rogues are proficient with all simple weapons, plus the hand crossbow, rapier, sap, shortbow, and short sword. Rogues are proficient with light armor, but not with shields.</description>
-			<type>ROGUECLASSABILITY.SPECIALQUALITY</type>
+			<type>ROGUECLASSFEATURES.SPECIALQUALITY</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -3963,10 +3940,10 @@ BIO
 			<category>Special Ability</category>
 		</ability_object>
 		<ability_object>
-			<name>Bonus Skill Rank (Handle Animal, Knowledge (Geography), Sense Motive, Knowledge (Local), Knowledge (Dungeoneering), Knowledge (Engineering))</name>
+			<name>Bonus Skill Rank (Handle Animal, Knowledge (Dungeoneering), Knowledge (Engineering), Knowledge (Geography), Knowledge (Local), Sense Motive)</name>
 			<description></description>
 			<type>FAVOREDCLASSBONUS</type>
-			<associated>Handle Animal,Knowledge (Geography),Sense Motive,Knowledge (Local),Knowledge (Dungeoneering),Knowledge (Engineering)</associated>
+			<associated>Handle Animal,Knowledge (Dungeoneering),Knowledge (Engineering),Knowledge (Geography),Knowledge (Local),Sense Motive</associated>
 			<count>6</count>
 			<auto>F</auto>
 			<hidden>T</hidden>
@@ -3976,7 +3953,7 @@ BIO
 		<ability_object>
 			<name>Combat Trick</name>
 			<description>You gain a bonus combat feat.</description>
-			<type>ROGUECLASSABILITY.SPECIALQUALITY.EXTRAORDINARY.ROGUETALENT</type>
+			<type>ROGUECLASSFEATURES.SPECIALQUALITY.EXTRAORDINARY.ROGUETALENT</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>F</auto>
@@ -3987,7 +3964,7 @@ BIO
 		<ability_object>
 			<name>Improved Evasion</name>
 			<description>This works like Evasion, except that while you still take no damage on a successful Reflex saving throw against attacks, you henceforth take only half damage on a failed save. If you are helpless, you do not gain the benefit of Improved Evasion.</description>
-			<type>ROGUECLASSABILITY.SPECIALQUALITY.EXTRAORDINARY.ROGUETALENT.ROGUEADVANCEDTALENT</type>
+			<type>ROGUECLASSFEATURES.SPECIALQUALITY.EXTRAORDINARY.ROGUETALENT.ROGUEADVANCEDTALENT</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>F</auto>
@@ -4010,7 +3987,7 @@ BIO
 		<ability_object>
 			<name>Evasion</name>
 			<description></description>
-			<type>INTERNAL.CLASSABILITY.RANGERCLASSABILITY.ROGUECLASSABILITY.MONKCLASSABILITY</type>
+			<type>INTERNAL.CLASSFEATURES.RANGERCLASSFEATURES.ROGUECLASSFEATURES.MONKCLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -4043,7 +4020,7 @@ BIO
 		<ability_object>
 			<name>Retain Dex To AC ~ Flat-footed</name>
 			<description>You retain your Dexterity bonus to AC even when flat-footed</description>
-			<type>INTERNAL.CLASSABILITY</type>
+			<type>INTERNAL.CLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -4054,7 +4031,7 @@ BIO
 		<ability_object>
 			<name>Rogue Talents</name>
 			<description></description>
-			<type>INTERNAL.ROGUECLASSABILITY</type>
+			<type>INTERNAL.ROGUECLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -4063,9 +4040,9 @@ BIO
 			<category>Special Ability</category>
 		</ability_object>
 		<ability_object>
-			<name>Sneak Attack ~ Rogue</name>
+			<name>Sneak Attack</name>
 			<description></description>
-			<type>INTERNAL.ROGUECLASSABILITY</type>
+			<type>INTERNAL.ROGUECLASSFEATURES.ALCHEMISTCLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -4074,9 +4051,9 @@ BIO
 			<category>Special Ability</category>
 		</ability_object>
 		<ability_object>
-			<name>Trap Sense ~ Rogue</name>
+			<name>Trap Sense</name>
 			<description></description>
-			<type>INTERNAL.ROGUECLASSABILITY</type>
+			<type>INTERNAL.ROGUECLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -4087,7 +4064,7 @@ BIO
 		<ability_object>
 			<name>Uncanny Dodge ~ Base</name>
 			<description></description>
-			<type>INTERNAL.CLASSABILITY</type>
+			<type>INTERNAL.CLASSFEATURES</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>
@@ -4108,6 +4085,17 @@ BIO
 			<category>Internal</category>
 		</ability_object>
 		<ability_object>
+			<name>CMB</name>
+			<description></description>
+			<type></type>
+			<associated></associated>
+			<count>0</count>
+			<auto>T</auto>
+			<hidden>F</hidden>
+			<virtual>F</virtual>
+			<category>Internal</category>
+		</ability_object>
+		<ability_object>
 			<name>Default</name>
 			<description></description>
 			<type></type>
@@ -4119,7 +4107,7 @@ BIO
 			<category>Internal</category>
 		</ability_object>
 		<ability_object>
-			<name>Halfling Racial Trait Default</name>
+			<name>Race Traits ~ Halfling</name>
 			<description></description>
 			<type></type>
 			<associated></associated>
@@ -4154,7 +4142,7 @@ BIO
 		<ability_object>
 			<name>Weapon Prof ~ Auto</name>
 			<description></description>
-			<type>WEAPONPROFAUTO</type>
+			<type>WEAPONPROFAUTO.WEAPONPROFSIMPLE.WEAPONPROFMARTIAL</type>
 			<associated></associated>
 			<count>0</count>
 			<auto>T</auto>

@@ -558,7 +558,7 @@ public class PCClassTest extends AbstractCharacterTestCase
 		casterFeat.setCDOMCategory(AbilityCategory.FEAT);
 		context.ref.importObject(casterFeat);
 
-		AbilityUtilities.modAbility(character, casterFeat, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, casterFeat, null);
 		cast =
 				character.getSpellSupport(charClass).getCastForLevel(11, sbook, true, false, character)
 					+ character.getSpellSupport(charClass).getBonusCastForLevelString(11, sbook, character);
@@ -582,6 +582,8 @@ public class PCClassTest extends AbstractCharacterTestCase
 		context.unconditionallyProcess(megaCasterClass.getOriginalClassLevel(2), "KNOWN", "4,2,2,3,4,5,6,7,8,9,10");
 		context.unconditionallyProcess(megaCasterClass.getOriginalClassLevel(2), "CAST", "3,1,2,3,4,5,6,7,8,9,10");
 		Globals.getContext().ref.importObject(megaCasterClass);
+		context.ref.buildDerivedObjects();
+		context.loadCampaignFacets();
 
 		final PlayerCharacter character = getCharacter();
 
@@ -656,6 +658,8 @@ public class PCClassTest extends AbstractCharacterTestCase
 		context.unconditionallyProcess(megaCasterClass.getOriginalClassLevel(2), "KNOWN", "4,2,2,3,4,5,6,7,8,9,10");
 		context.unconditionallyProcess(megaCasterClass.getOriginalClassLevel(2), "CAST", "3,1,2,3,4,5,6,7,8,9,10");
 		Globals.getContext().ref.importObject(megaCasterClass);
+		context.ref.buildDerivedObjects();
+		context.loadCampaignFacets();
 
 		final PlayerCharacter character = getCharacter();
 
@@ -773,13 +777,13 @@ public class PCClassTest extends AbstractCharacterTestCase
 		// Add the class to the character
 		PlayerCharacter pc = getCharacter();
 		pc.incrementClassLevel(1, pcclass, true);
-		assertTrue("Character should have ability1.", hasAbility(pc, null,
+		assertTrue("Character should have ability1.", hasAbility(pc, cat,
 			Nature.AUTOMATIC, ab1));
 		assertFalse("Character should not have ability2.", hasAbility(pc, cat,
 			Nature.AUTOMATIC, ab2));
 
 		pc.incrementClassLevel(1, pcclass, true);
-		assertTrue("Character should have ability1.", hasAbility(pc, null,
+		assertTrue("Character should have ability1.", hasAbility(pc, cat,
 			Nature.AUTOMATIC, ab1));
 		assertTrue("Character should have ability2.", hasAbility(pc, cat,
 			Nature.AUTOMATIC, ab2));

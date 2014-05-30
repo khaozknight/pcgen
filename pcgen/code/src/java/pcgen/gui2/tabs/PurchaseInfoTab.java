@@ -20,8 +20,6 @@
  */
 package pcgen.gui2.tabs;
 
-import static pcgen.gui2.tabs.equip.EquipmentSelection.equipmentArrayFlavor;
-
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -44,7 +42,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import javax.swing.AbstractAction;
 import javax.swing.Box;
 import javax.swing.ComboBoxModel;
@@ -69,7 +66,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
 
 import pcgen.cdom.base.Constants;
 import pcgen.core.facade.CharacterFacade;
@@ -87,8 +83,11 @@ import pcgen.gui2.filter.FilterButton;
 import pcgen.gui2.filter.FilteredTreeViewTable;
 import pcgen.gui2.filter.SearchFilterPanel;
 import pcgen.gui2.tabs.equip.EquipmentSelection;
+import static pcgen.gui2.tabs.equip.EquipmentSelection.equipmentArrayFlavor;
 import pcgen.gui2.tabs.models.BigDecimalFieldHandler;
 import pcgen.gui2.tabs.models.CharacterComboBoxModel;
+import pcgen.gui2.tabs.models.CharacterTreeCellRenderer;
+import pcgen.gui2.tabs.models.CharacterTreeCellRenderer.Handler;
 import pcgen.gui2.tabs.models.ConcurrentDataView;
 import pcgen.gui2.tools.FlippingSplitPane;
 import pcgen.gui2.tools.Icons;
@@ -121,6 +120,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 	private static final Set<String> primaryTypes = new HashSet<String>();
 	private final FilteredTreeViewTable<CharacterFacade, EquipmentFacade> availableTable;
 	private final FilteredTreeViewTable<CharacterFacade, EquipmentFacade> purchasedTable;
+	private final EquipmentRenderer equipmentRenderer;
 	private final JCheckBox autoResizeBox;
 	private final JButton addCustomButton;
 	private final JButton addEquipmentButton;
@@ -143,6 +143,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 		super("Purchase"); //$NON-NLS-1$
 		this.availableTable = new FilteredTreeViewTable<CharacterFacade, EquipmentFacade>();
 		this.purchasedTable = new FilteredTreeViewTable<CharacterFacade, EquipmentFacade>();
+		this.equipmentRenderer = new EquipmentRenderer();
 		this.autoResizeBox = new JCheckBox();
 		this.addCustomButton = new JButton();
 		this.addEquipmentButton = new JButton();
@@ -202,6 +203,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 			panel.add(filterBar, BorderLayout.NORTH);
 
 			availableTable.getTree().setLargeModel(true);
+			availableTable.setTreeCellRenderer(equipmentRenderer);
 			availableTable.setDisplayableFilter(filterBar);
 			availableTable.sortModel();
 			panel.add(new JScrollPane(availableTable), BorderLayout.CENTER);
@@ -228,6 +230,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 			panel.add(filterBar, BorderLayout.NORTH);
 
 			purchasedTable.setDisplayableFilter(filterBar);
+			purchasedTable.setTreeCellRenderer(equipmentRenderer);
 			purchasedTable.setSortingPriority(Collections.singletonList(new SortingPriority(0, SortMode.ASCENDING)));
 			purchasedTable.sortModel();
 			panel.add(new JScrollPane(purchasedTable), BorderLayout.CENTER);
@@ -369,7 +372,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 		state.put(FundsSubtractAction.class, new FundsSubtractAction(character));
 		state.put(AllowDebtAction.class, new AllowDebtAction(character));
 		state.put(EquipInfoHandler.class, new EquipInfoHandler(character));
-		state.put(EquipmentRenderer.class, new EquipmentRenderer(character));
+		state.put(Handler.class, equipmentRenderer.createHandler(character));
 		state.put(EquipmentFilterHandler.class, new EquipmentFilterHandler(character));
 		state.put(EquipmentTransferHandler.class, new EquipmentTransferHandler(character));
 		state.put(CurrencyLabelHandler.class, new CurrencyLabelHandler(character));
@@ -432,9 +435,8 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 	{
 		((EquipmentFilterHandler) state.get(EquipmentFilterHandler.class)).install();
 		((AvailableTreeViewModel) state.get(AvailableTreeViewModel.class)).install();
-		availableTable.setTreeCellRenderer((EquipmentRenderer) state.get(EquipmentRenderer.class));
+		((Handler) state.get(Handler.class)).install();
 		purchasedTable.setTreeViewModel((TreeViewModel<EquipmentFacade>) state.get(PurchasedTreeViewModel.class));
-		purchasedTable.setTreeCellRenderer((EquipmentRenderer) state.get(EquipmentRenderer.class));
 		autoResizeBox.setAction((UseAutoResizeAction) state.get(UseAutoResizeAction.class));
 		addCustomButton.setAction((AddCustomAction) state.get(AddCustomAction.class));
 		addEquipmentButton.setAction((AddAction) state.get(AddAction.class));
@@ -467,6 +469,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 		((BigDecimalFieldHandler) state.get(Models.FundsHandler)).uninstall();
 		((BuyPopupMenuHandler) state.get(BuyPopupMenuHandler.class)).uninstall();
 		((SellPopupMenuHandler) state.get(SellPopupMenuHandler.class)).uninstall();
+		((Handler) state.get(Handler.class)).uninstall();
 	}
 
 	@Override
@@ -1103,30 +1106,19 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 	 * The Class <code>EquipmentRenderer</code> displays the tree cells of the
 	 * available and purchased equipment tables.  
 	 */
-	private class EquipmentRenderer extends DefaultTreeCellRenderer
+	private class EquipmentRenderer extends CharacterTreeCellRenderer
 	{
-
-		private CharacterFacade character;
-
-		public EquipmentRenderer(CharacterFacade character)
-		{
-			this.character = character;
-			setTextNonSelectionColor(UIPropertyContext.getQualifiedColor());
-			setClosedIcon(null);
-			setLeafIcon(null);
-			setOpenIcon(null);
-		}
 
 		@Override
 		public Component getTreeCellRendererComponent(JTree tree, Object value,
-													  boolean sel, boolean expanded, boolean leaf, int row, boolean focus)
+				boolean sel, boolean expanded, boolean leaf, int row, boolean focus)
 		{
 
 			super.getTreeCellRendererComponent(tree, value, sel, expanded,
-											   leaf, row, focus);
+					leaf, row, focus);
 			Object equipObj = ((DefaultMutableTreeNode) value).getUserObject();
 			if (equipObj instanceof EquipmentFacade
-				&& !character.isQualifiedFor((EquipmentFacade) equipObj))
+					&& !character.isQualifiedFor((EquipmentFacade) equipObj))
 			{
 				setForeground(UIPropertyContext.getNotQualifiedColor());
 			}

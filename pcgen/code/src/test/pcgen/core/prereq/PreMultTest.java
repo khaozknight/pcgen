@@ -89,7 +89,6 @@ public class PreMultTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(knowledge, "CLASSES", "My Class");
 		knowledge.setName("KNOWLEDGE (ARCANA)");
 		TestHelper.addType(knowledge, "KNOWLEDGE.INT");
-		character.addSkill(knowledge);
 		SkillRankControl.modRanks(8.0, myClass, true, character, knowledge);
 
 	}
@@ -114,17 +113,17 @@ public class PreMultTest extends AbstractCharacterTestCase
 	public void testCharWithMultipleSpellClasses() throws Exception
 	{
 		LoadContext context = Globals.getContext();
-		final PCClass pcClass = new PCClass();
-		pcClass.setName("MyClass");
+		final PCClass pcClass = context.ref.constructCDOMObject(PCClass.class, "MyClass");
 		context.unconditionallyProcess(pcClass, "SPELLSTAT", "CHA");
 		pcClass.put(StringKey.SPELLTYPE, "ARCANE");
 		context.unconditionallyProcess(pcClass.getOriginalClassLevel(1), "CAST", "5,4");
 
-		final PCClass pcClass2 = new PCClass();
-		pcClass2.setName("Other Class");
+		final PCClass pcClass2 = context.ref.constructCDOMObject(PCClass.class, "Other Class");
 		context.unconditionallyProcess(pcClass2, "SPELLSTAT", "INT");
 		pcClass2.put(StringKey.SPELLTYPE, "ARCANE");
 		context.unconditionallyProcess(pcClass2.getOriginalClassLevel(1), "CAST", "5,4");
+		context.ref.buildDerivedObjects();
+		context.loadCampaignFacets();
 
 		final PlayerCharacter character = getCharacter();
 		setPCStat(character, cha, 12);
@@ -199,35 +198,35 @@ public class PreMultTest extends AbstractCharacterTestCase
 		int passes = test.passes(prereq, character, null);
 		assertEquals("No feats should not pass", 0, passes);
 
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, metamagic1);
+		addAbility(AbilityCategory.FEAT, metamagic1);
 		passes = test.passes(prereq, character, null);
 		assertEquals("One feat should not pass", 0, passes);
 
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, metamagic2);
+		addAbility(AbilityCategory.FEAT, metamagic2);
 		passes = test.passes(prereq, character, null);
 		assertEquals("Two feats should not pass", 0, passes);
 
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, metamagic3);
+		addAbility(AbilityCategory.FEAT, metamagic3);
 		passes = test.passes(prereq, character, null);
 		assertEquals("Three feats should pass", 1, passes);
 
-		character.removeRealAbility(AbilityCategory.FEAT, metamagic3);
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, item1);
+		removeAbility(AbilityCategory.FEAT, metamagic3);
+		addAbility(AbilityCategory.FEAT, item1);
 		passes = test.passes(prereq, character, null);
 		assertEquals("Three feats should pass", 1, passes);
 
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, item2);
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, item3);
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, metamagic3);
+		addAbility(AbilityCategory.FEAT, item2);
+		addAbility(AbilityCategory.FEAT, item3);
+		addAbility(AbilityCategory.FEAT, metamagic3);
 		passes = test.passes(prereq, character, null);
 		assertEquals("Six feats should pass", 1, passes);
 
-		character.removeRealAbility(AbilityCategory.FEAT, metamagic3);
-		character.removeRealAbility(AbilityCategory.FEAT, item3);
-		character.removeRealAbility(AbilityCategory.FEAT, item2);
-		character.removeRealAbility(AbilityCategory.FEAT, item1);
-		character.removeRealAbility(AbilityCategory.FEAT, metamagic2);
-		character.removeRealAbility(AbilityCategory.FEAT, metamagic1);
+		removeAbility(AbilityCategory.FEAT, metamagic3);
+		removeAbility(AbilityCategory.FEAT, item3);
+		removeAbility(AbilityCategory.FEAT, item2);
+		removeAbility(AbilityCategory.FEAT, item1);
+		removeAbility(AbilityCategory.FEAT, metamagic2);
+		removeAbility(AbilityCategory.FEAT, metamagic1);
 	}
 
 	/**
@@ -252,13 +251,9 @@ public class PreMultTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(extraKnow, "CLASSES", "MyClass");
 		extraKnow.setName("KNOWLEDGE (RELIGION)");
 		TestHelper.addType(extraKnow, "KNOWLEDGE.INT");
-		character.addSkill(extraKnow);
 		SkillRankControl.modRanks(5.0, myClass, true, character, extraKnow);
 
 		passes = PrereqHandler.passes(prereq, character, null);
 		assertTrue("Should pass 2 knowledge skill test with 2 skills", passes);
-
-		character.removeSkill(knowledge);
-		character.calcActiveBonuses();
 	}
 }

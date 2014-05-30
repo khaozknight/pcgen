@@ -18,15 +18,16 @@
 package tokencontent;
 
 import java.util.Collection;
-import java.util.Map;
 
 import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.base.FormulaFactory;
+import pcgen.cdom.base.UserSelection;
+import pcgen.cdom.content.CNAbilityFactory;
 import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.enumeration.VariableKey;
 import pcgen.cdom.facet.FacetLibrary;
 import pcgen.cdom.facet.KnownSpellFacet;
-import pcgen.cdom.helper.CategorizedAbilitySelection;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.cdom.list.ClassSpellList;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
@@ -93,14 +94,19 @@ public class GlobalSpellKnownTest extends AbstractContentTokenTest
 	protected boolean containsExpected()
 	{
 		//Cannot use contains because facet is using instance identity
-		Map<Integer, Collection<Spell>> levelMap = knownSpellFacet.getKnownSpells(id, wizardSpellList);
-		int size = levelMap.size();
+		Collection<Integer> levels = knownSpellFacet.getScopes2(id, wizardSpellList);
+		int size = levels.size();
 		if (size != 1)
 		{
 			System.err.println("Size Incorrect");
 			return false;
 		}
-		Collection<Spell> spells = levelMap.get(2);
+		if (!levels.contains(2))
+		{
+			System.err.println("Level Incorrect");
+			return false;
+		}
+		Collection<Spell> spells = knownSpellFacet.getSet(id, wizardSpellList, 2);
 		if (spells.size() != 1)
 		{
 			System.err.println("Spell Size Incorrect");
@@ -112,12 +118,7 @@ public class GlobalSpellKnownTest extends AbstractContentTokenTest
 	@Override
 	protected int targetFacetCount()
 	{
-		Map<Integer, Collection<Spell>> levelMap = knownSpellFacet.getKnownSpells(id, wizardSpellList);
-		if (levelMap.isEmpty())
-		{
-			return 0;
-		}
-		Collection<Spell> spells = levelMap.get(2);
+		Collection<Spell> spells = knownSpellFacet.getSet(id, wizardSpellList, 2);
 		return (spells == null) ? 0 : spells.size();
 	}
 
@@ -140,10 +141,9 @@ public class GlobalSpellKnownTest extends AbstractContentTokenTest
 		}
 		finishLoad();
 		assertEquals(baseCount(), targetFacetCount());
-		CategorizedAbilitySelection cas =
-				new CategorizedAbilitySelection(AbilityCategory.FEAT, source,
-					Nature.AUTOMATIC);
-		directAbilityFacet.add(id, cas);
+		CNAbilitySelection cas =
+				new CNAbilitySelection(CNAbilityFactory.getCNAbility(AbilityCategory.FEAT, Nature.AUTOMATIC, source));
+		directAbilityFacet.add(id, cas, UserSelection.getInstance());
 		assertFalse(containsExpected());
 		PCTemplate varsource = create(PCTemplate.class, "VarSource");
 		varsource.put(VariableKey.getConstant("MyCasterLevel"), FormulaFactory.getFormulaFor(4.0));
@@ -151,7 +151,7 @@ public class GlobalSpellKnownTest extends AbstractContentTokenTest
 		pc.calcActiveBonuses();
 		assertTrue(containsExpected());
 		assertEquals(baseCount() + 1, targetFacetCount());
-		directAbilityFacet.remove(id, cas);
+		directAbilityFacet.remove(id, cas, UserSelection.getInstance());
 		pc.calcActiveBonuses();
 		assertEquals(baseCount(), targetFacetCount());
 	}

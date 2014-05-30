@@ -68,11 +68,11 @@ public final class Skill extends BonusObj
 		}
 
 		if (!token.equals("LIST") && !token.startsWith("STAT.")
-			&& !token.startsWith("STAT=") && !token.equals("%LIST")
-			&& !token.equals("%VAR"))
+			&& !token.equals("%CHOICE") && !token.startsWith("STAT=")
+			&& !token.equals("%LIST") && !token.equals("%VAR"))
 		{
 			//This is done entirely for the side effects
-			TokenUtilities.getReference(context, SKILL_CLASS, token);
+			context.forgetMeNot(TokenUtilities.getReference(context, SKILL_CLASS, token));
 		}
 
 		return true;

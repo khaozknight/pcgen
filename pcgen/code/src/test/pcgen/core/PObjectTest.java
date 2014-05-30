@@ -35,6 +35,7 @@ import pcgen.PCGenTestCase;
 import pcgen.base.lang.UnreachableError;
 import pcgen.cdom.base.CDOMReference;
 import pcgen.cdom.base.FormulaFactory;
+import pcgen.cdom.content.CNAbility;
 import pcgen.cdom.content.ChallengeRating;
 import pcgen.cdom.content.DamageReduction;
 import pcgen.cdom.enumeration.ListKey;
@@ -202,27 +203,29 @@ public class PObjectTest extends AbstractCharacterTestCase
 	{
 		Ability pObj = new Ability();
 		pObj.setName("My PObject");
+		pObj.setCDOMCategory(AbilityCategory.FEAT);
 		Globals.getContext().unconditionallyProcess(pObj, "CHOOSE", "LANG|ALL");
+		Globals.getContext().unconditionallyProcess(pObj, "MULT", "YES");
+		Globals.getContext().unconditionallyProcess(pObj, "STACK", "YES");
 		Globals.getContext().ref.constructCDOMObject(Language.class, "TestPsion 1");
 
 		PlayerCharacter aPC = getCharacter();
-		Ability ability = aPC.addAbilityNeedCheck(AbilityCategory.FEAT, pObj);
-
-		AbilityUtilities.modAbility(aPC, ability, "TestPsion 1", AbilityCategory.FEAT);
+		CNAbility cna = AbstractCharacterTestCase.applyAbility(aPC, AbilityCategory.FEAT, pObj, "TestPsion 1");
+		pObj = cna.getAbility();
 		BonusAddition.applyBonus("SPELLKNOWN|CLASS=TestPsion;LEVEL=1|1", "TestPsion 1",
-			aPC, ability);
+			aPC, pObj);
 		aPC.calcActiveBonuses();
 		assertEquals("Should get 1 bonus known spells", 1, (int) aPC
 			.getTotalBonusTo("SPELLKNOWN", "CLASS.TestPsion;LEVEL.1"));
-		AbilityUtilities.modAbility(aPC, ability, "TestPsion 1", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(aPC, AbilityCategory.FEAT, pObj, "TestPsion 1");
 		BonusAddition.applyBonus("SPELLKNOWN|CLASS=TestPsion;LEVEL=1|1", "TestPsion 1",
-			aPC, ability);
+			aPC, pObj);
 		aPC.calcActiveBonuses();
 		assertEquals("Should get 4 bonus known spells", (2 * 2), (int) aPC
 			.getTotalBonusTo("SPELLKNOWN", "CLASS.TestPsion;LEVEL.1"));
-		AbilityUtilities.modAbility(aPC, ability, "TestPsion 1", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(aPC, AbilityCategory.FEAT, pObj, "TestPsion 1");
 		BonusAddition.applyBonus("SPELLKNOWN|CLASS=TestPsion;LEVEL=1|1", "TestPsion 1",
-			aPC, ability);
+			aPC, pObj);
 		aPC.calcActiveBonuses();
 		assertEquals("Should get 9 bonus known spells", (3 * 3), (int) aPC
 			.getTotalBonusTo("SPELLKNOWN", "CLASS.TestPsion;LEVEL.1"));
@@ -258,12 +261,11 @@ public class PObjectTest extends AbstractCharacterTestCase
 		Globals.getContext().ref.constructCDOMObject(Language.class, "Foo");
 		PlayerCharacter aPC = getCharacter();
 		int baseHP = aPC.hitPoints();
-		pObj = aPC.addAbilityNeedCheck(AbilityCategory.FEAT, pObj);
-		AbilityUtilities.modAbility(aPC, pObj, "", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(aPC, AbilityCategory.FEAT, pObj, "");
 		aPC.calcActiveBonuses();
 		assertEquals("Should have added 3 HPs", baseHP + 3, aPC.hitPoints());
 
-		AbilityUtilities.modAbility(aPC, pObj, "", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(aPC, AbilityCategory.FEAT, pObj, "");
 		aPC.calcActiveBonuses();
 		assertEquals("2 instances should have added 6 HPs", baseHP + 6, aPC
 			.hitPoints());
@@ -298,12 +300,11 @@ public class PObjectTest extends AbstractCharacterTestCase
 						AbilityCategory.FEAT, "Toughness");
 		PlayerCharacter aPC = getCharacter();
 		int baseHP = aPC.hitPoints();
-		pObj = aPC.addAbilityNeedCheck(AbilityCategory.FEAT, pObj);
-		AbilityUtilities.modAbility(aPC, pObj, "", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(aPC, AbilityCategory.FEAT, pObj, "");
 		aPC.calcActiveBonuses();
 		assertEquals("Should have added 3 HPs", baseHP + 3, aPC.hitPoints());
 
-		AbilityUtilities.modAbility(aPC, pObj, "", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(aPC, AbilityCategory.FEAT, pObj, "");
 		aPC.calcActiveBonuses();
 		assertEquals("2 instances should have added 6 HPs", baseHP + 6, aPC
 			.hitPoints());
@@ -399,7 +400,7 @@ public class PObjectTest extends AbstractCharacterTestCase
 		// Add the template to the character
 		PlayerCharacter pc = getCharacter();
 		pc.setRace(race);
-		assertTrue("Character should have ability1.", hasAbility(pc, null,
+		assertTrue("Character should have ability1.", hasAbility(pc, cat,
 			Nature.AUTOMATIC, ab1));
 		assertTrue("Character should have ability2.", hasAbility(pc, cat,
 			Nature.AUTOMATIC, ab2));

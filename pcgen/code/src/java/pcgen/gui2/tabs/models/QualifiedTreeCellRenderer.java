@@ -22,11 +22,8 @@ package pcgen.gui2.tabs.models;
 
 import java.awt.Component;
 import java.awt.Font;
-
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import pcgen.core.facade.CharacterFacade;
 import pcgen.core.facade.InfoFacade;
 import pcgen.gui2.UIPropertyContext;
 import pcgen.system.LanguageBundle;
@@ -35,27 +32,12 @@ import pcgen.system.LanguageBundle;
  *
  * @author Connor Petty <cpmeister@users.sourceforge.net>
  */
-public class QualifiedTreeCellRenderer extends DefaultTreeCellRenderer
+public class QualifiedTreeCellRenderer extends CharacterTreeCellRenderer
 {
-
-	private CharacterFacade character;
-
-	/**
-	 * Create a new instance of QualifiedTreeCellRenderer
-	 * @param character The character for which this instance is rendering.
-	 */
-	public QualifiedTreeCellRenderer(CharacterFacade character)
-	{
-		this.character = character;
-		setTextNonSelectionColor(UIPropertyContext.getQualifiedColor());
-		setClosedIcon(null);
-		setLeafIcon(null);
-		setOpenIcon(null);
-	}
 
 	@Override
 	public Component getTreeCellRendererComponent(JTree tree, Object value,
-		boolean sel, boolean expanded, boolean leaf, int row, boolean focus)
+			boolean sel, boolean expanded, boolean leaf, int row, boolean focus)
 	{
 		Object obj = ((DefaultMutableTreeNode) value).getUserObject();
 		if ("".equals(obj)) //$NON-NLS-1$

@@ -30,6 +30,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,9 +58,8 @@ import pcgen.cdom.enumeration.BiographyField;
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.enumeration.ObjectKey;
-import pcgen.cdom.enumeration.SkillFilter;
 import pcgen.cdom.enumeration.StringKey;
-import pcgen.cdom.helper.CategorizedAbilitySelection;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.cdom.helper.ClassSource;
 import pcgen.cdom.inst.PCClassLevel;
 import pcgen.cdom.list.ClassSpellList;
@@ -1252,7 +1252,9 @@ public final class PCGVer2Creator implements IOConstants
 
 	private void appendEquipmentLines(StringBuilder buffer)
 	{
-		for (final Equipment eq : thePC.getEquipmentMasterList())
+		List<Equipment> eqsorted = thePC.getEquipmentMasterList();
+		Collections.sort(eqsorted);
+		for (final Equipment eq : eqsorted)
 		{
 			buffer.append(TAG_EQUIPNAME).append(':');
 			buffer.append(EntityEncoder.encode(eq.getName()));
@@ -1377,6 +1379,15 @@ public final class PCGVer2Creator implements IOConstants
 		ArrayList<AbilityCategory> categories = new ArrayList<AbilityCategory>(
 				getGameMode().getAllAbilityCategories());
 		categories.add(AbilityCategory.LANGBONUS);
+		
+		Collections.sort(categories, new Comparator<AbilityCategory>() {
+			@Override
+			public int compare(AbilityCategory  a, AbilityCategory  b)
+			{
+				return  a.getKeyName().compareTo(b.getKeyName());
+			}
+		});
+		
 		Collection<Ability> virtSave = new WrappedMapSet<Ability>(IdentityHashMap.class);
 		virtSave.addAll(thePC.getSaveAbilities());
 
@@ -1392,11 +1403,14 @@ public final class PCGVer2Creator implements IOConstants
 					virtualAbilitiesToSave.add(vability);
 				}
 			}
+			
 			// ABILITY:FEAT|NORMAL|Feat Key|APPLIEDTO:xxx|TYPE:xxx|SAVE:xxx|DESC:xxx
+			Collections.sort(normalAbilitiesToSave);
 			for (final CNAbility ability : normalAbilitiesToSave)
 			{
 				writeAbilityToBuffer(buffer, ability);
 			}
+			Collections.sort(virtualAbilitiesToSave);
 			for (final CNAbility ability : virtualAbilitiesToSave)
 			{
 				writeAbilityToBuffer(buffer, ability);
@@ -1592,8 +1606,9 @@ public final class PCGVer2Creator implements IOConstants
 	private void appendLanguageLine(StringBuilder buffer)
 	{
 		String del = Constants.EMPTY_STRING;
-
-		for (final Language lang : charDisplay.getLanguageSet())
+		TreeSet<Language> sortedlangs = new TreeSet(charDisplay.getLanguageSet());
+		
+		for (final Language lang : sortedlangs)
 		{
 			buffer.append(del);
 			buffer.append(TAG_LANGUAGE).append(':');
@@ -2002,10 +2017,6 @@ public final class PCGVer2Creator implements IOConstants
 	 */
 	private void appendSkillLines(StringBuilder buffer)
 	{
-		SkillFilter filter = thePC.getSkillFilter();
-
-		thePC.populateSkills(filter);
-
 		Collection<Skill> skillSet = charDisplay.getSkillSet();
 		for (Skill skill : skillSet)
 		{
@@ -2016,10 +2027,14 @@ public final class PCGVer2Creator implements IOConstants
 				buffer.append(TAG_SKILL).append(':');
 				buffer.append(EntityEncoder.encode(skill.getKeyName()));
 
+
 				buffer.append('|');
-				buffer.append(TAG_OUTPUTORDER).append(':');
-				buffer.append(outputIndex == null ? 0 : outputIndex);
-				buffer.append('|');
+				if (outputIndex != null && outputIndex != 0)
+				{
+					buffer.append(TAG_OUTPUTORDER).append(':');
+					buffer.append(outputIndex == null ? 0 : outputIndex);
+					buffer.append('|');
+				}
 
 				for (PCClass pcc : thePC.getSkillRankClasses(skill))
 				{
@@ -2271,9 +2286,18 @@ public final class PCGVer2Creator implements IOConstants
 	private void appendTempBonuses(StringBuilder buffer)
 	{
 		final List<String> trackList = new ArrayList<String>();
+		TreeSet<Map.Entry<BonusObj, BonusManager.TempBonusInfo>> sortedbonus = new TreeSet<Map.Entry<BonusObj, BonusManager.TempBonusInfo>>(
+			new Comparator<Map.Entry<BonusObj, BonusManager.TempBonusInfo>>() {
+				@Override
+				public int compare(Map.Entry<BonusObj, BonusManager.TempBonusInfo>  a, Map.Entry<BonusObj, BonusManager.TempBonusInfo>  b)
+				{
+					return  a.getKey().getBonusName().compareTo(b.getKey().getBonusName());
+				}
+		});
+		sortedbonus.addAll(thePC.getTempBonusMap().entrySet());
+		
 		//for (BonusManager.TempBonusInfo tbi : thePC.getTempBonusMap().values())
-		for (Map.Entry<BonusObj, BonusManager.TempBonusInfo> me : thePC
-				.getTempBonusMap().entrySet())
+		for (Map.Entry<BonusObj, BonusManager.TempBonusInfo> me : sortedbonus)
 		{
 			BonusObj bonus = me.getKey();
 			TempBonusInfo tbi = me.getValue();
@@ -2300,8 +2324,7 @@ public final class PCGVer2Creator implements IOConstants
 			 * Template and Target object) are written, but that ALL of the
 			 * items are written on one line.
 			 */
-			for (Map.Entry<BonusObj, BonusManager.TempBonusInfo> subme : thePC
-					.getTempBonusMap().entrySet())
+			for (Map.Entry<BonusObj, BonusManager.TempBonusInfo> subme : sortedbonus)
 			{
 				BonusObj subBonus = subme.getKey();
 				TempBonusInfo subtbi = subme.getValue();
@@ -2533,7 +2556,7 @@ public final class PCGVer2Creator implements IOConstants
 		{
 			for (PCTemplate lt : rlt.getSafeListFor(ListKey.LEVEL_TEMPLATES))
 			{
-				List<? extends CategorizedAbilitySelection> featList = thePC
+				List<? extends CNAbilitySelection> featList = thePC
 						.getTemplateFeatList(lt);
 				if (featList != null)
 				{
@@ -2543,7 +2566,7 @@ public final class PCGVer2Creator implements IOConstants
 		}
 		for (PCTemplate lt : pct.getSafeListFor(ListKey.LEVEL_TEMPLATES))
 		{
-			List<? extends CategorizedAbilitySelection> featList = thePC
+			List<? extends CNAbilitySelection> featList = thePC
 					.getTemplateFeatList(lt);
 			if (featList != null)
 			{
@@ -2553,7 +2576,7 @@ public final class PCGVer2Creator implements IOConstants
 
 		for (PCTemplate lt : pct.getSafeListFor(ListKey.HD_TEMPLATES))
 		{
-			List<? extends CategorizedAbilitySelection> featList = thePC
+			List<? extends CNAbilitySelection> featList = thePC
 					.getTemplateFeatList(lt);
 			if (featList != null)
 			{
@@ -2564,9 +2587,9 @@ public final class PCGVer2Creator implements IOConstants
 	}
 
 	private void writeTemplateFeat(StringBuilder aString, PCTemplate pct,
-		List<? extends CategorizedAbilitySelection> featList)
+		List<? extends CNAbilitySelection> featList)
 	{
-		for (CategorizedAbilitySelection s : featList)
+		for (CNAbilitySelection s : featList)
 		{
 			if (aString.length() != 0)
 			{

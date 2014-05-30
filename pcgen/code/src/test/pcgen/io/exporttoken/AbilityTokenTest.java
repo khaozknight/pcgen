@@ -36,7 +36,6 @@ import pcgen.cdom.enumeration.SkillArmorCheck;
 import pcgen.cdom.helper.Aspect;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
-import pcgen.core.AbilityUtilities;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.analysis.AlignmentConverter;
@@ -107,7 +106,7 @@ public class AbilityTokenTest extends AbstractCharacterTestCase
 		List<Aspect> ageList = new ArrayList<Aspect>();
 		ageList.add(new Aspect("Age In Years", "2000"));
 		ab1.addToMapFor(MapKey.ASPECT, AspectName.getConstant("Age In Years"), ageList);
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, ab1);
+		addAbility(AbilityCategory.FEAT, ab1);
 
 		TestHelper.makeSkill("Bluff", "Charisma", cha, true,
 			SkillArmorCheck.NONE);
@@ -123,9 +122,8 @@ public class AbilityTokenTest extends AbstractCharacterTestCase
 		}
 		skillFocus.put(ObjectKey.MULTIPLE_ALLOWED, true);
 		Globals.getContext().unconditionallyProcess(skillFocus, "CHOOSE", "SKILL|ALL");
-		Ability ability = character.addAbilityNeedCheck(AbilityCategory.FEAT, skillFocus);
-		AbilityUtilities.modAbility(character, ability, "KEY_Bluff", AbilityCategory.FEAT);
-		AbilityUtilities.modAbility(character, ability, "KEY_Listen", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, skillFocus, "KEY_Bluff");
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, skillFocus, "KEY_Listen");
 		character.calcActiveBonuses();
 	}
 

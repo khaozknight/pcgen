@@ -29,9 +29,9 @@ Timeless Body ~ Venerable	VISIBLE:NO																				PREAGESET:1,Venerable
 Augment Summoning		VISIBLE:YES	BONUS:STAT|STR,CON|4
 
 
-Raven Familiar Language	VISIBLE:NO					ADD:LANGUAGE|TYPE=Spoken	ABILITY:Special Ability|AUTOMATIC|Speak One Language
+Raven Familiar Language	VISIBLE:NO					ADD:LANGUAGE|TYPE=Spoken	ABILITY:Special Ability|AUTOMATIC|Familiar ~ Speak One Language
 # Data-611 Fix - Backing Out
-#Raven Familiar Language	VISIBLE:NO						ABILITY:Special Ability|AUTOMATIC|Speak One Language	LANGBONUS:TYPE=Spoken	BONUS:VAR|AdditionalLanguage|1|!PRESTAT:1,INT=13
+#Raven Familiar Language	VISIBLE:NO						ABILITY:Special Ability|AUTOMATIC|Familiar ~ Speak One Language	LANGBONUS:TYPE=Spoken	BONUS:VAR|AdditionalLanguage|1|!PRESTAT:1,INT=13
 
 
 ###Block: Fractional Hit Die Adjustments for Monster classes
@@ -219,7 +219,7 @@ Ability Drained (Charisma)		VISIBLE:NO	SOURCEPAGE:p.555	CHOOSE:NUMBER|MIN=1|MAX=
 
 ###Block: Negative Levels
 # Template Name	Visible	Source Page		Choose								Temporary effect description					Temporary Bonus
-Energy Drained	VISIBLE:NO	SOURCEPAGE:p.562	CHOOSE:NUMBER|MIN=1|MAX=20|TITLE=Negative Levels	TEMPDESC:You have gained one or more negative levels	TEMPBONUS:ANYPC|CHECKS|Fortitude,Reflex,Will|-1*(%CHOICE)	TEMPBONUS:ANYPC|COMBAT|TOHIT|-1*(%CHOICE)	TEMPBONUS:ANYPC|HP|CURRENTMAX|-5*(%CHOICE)	TEMPBONUS:ANYPC|SKILL|TYPE=Strength,TYPE=Dexterity,TYPE=Constitution,TYPE=Intelligence,TYPE=Wisdom,TYPE=Charisma|-1*(%CHOICE)
+Energy Drained	VISIBLE:NO	SOURCEPAGE:p.562	CHOOSE:NUMBER|MIN=1|MAX=20|TITLE=Negative Levels	TEMPDESC:You have gained one or more negative levels	TEMPBONUS:ANYPC|CHECKS|Fortitude,Reflex,Will|-1*(%CHOICE)	TEMPBONUS:ANYPC|COMBAT|TOHIT|-1*(%CHOICE)	TEMPBONUS:ANYPC|HP|CURRENTMAX|-5*(%CHOICE)	TEMPBONUS:ANYPC|SKILL|TYPE=Strength,TYPE=Dexterity,TYPE=Intelligence,TYPE=Wisdom,TYPE=Charisma|-1*(%CHOICE)
 
 ###Block: Conditions
 # Template Name	Visible	Source Page		Temporary effect description																																																																																												Temporary Bonus
@@ -244,7 +244,21 @@ Stunned		VISIBLE:NO	SOURCEPAGE:p.568	TEMPDESC:A stunned creature drops everythin
 # Template Name	Visible	Template		Choose
 Wild Shape		VISIBLE:YES	TEMPLATE:%LIST	CHOOSE:TEMPLATE|QUALIFIED[TYPE=WildshapeTemplate]
 #TEMPLATE:CHOOSE:Wild Shape (Medium Animal)|Wild Shape (Small Animal)|Wild Shape (Tiny Animal)|Wild Shape (Large Animal)|Wild Shape (Diminutive Animal)|Wild Shape (Small Magical Beast)|Wild Shape (Tiny Magical Beast)|Wild Shape (Large Magical Beast)	TEMPLATE:CHOOSE:Wild Shape (Badger)|Wild Shape (Dire Rat)|Wild Shape (Eagle)|Wild Shape (Electric Eel)|Wild Shape (Octopus)|Wild Shape (Baboon)|Wild Shape (Boar)|Wild Shape (Cheetah)|Wild Shape (Constrictor Snake)|Wild Shape (Deinonychus)|Wild Shape (Dire Badger)|Wild Shape (Dolphin)|Wild Shape (Gar)|Wild Shape (Giant Frog)|Wild Shape (Goblin Dog)|Wild Shape (Hyena)|Wild Shape (Leopard)|Wild Shape (Monitor Lizard)|Wild Shape (Pony)|Wild Shape (Ram)|Wild Shape (Riding Dog)|Wild Shape (Squid)|Wild Shape (Stingray)
-
+#At 4th level,
+#	functions like the beast shape I spell.
+#At 6th level,
+#	functions as beast shape II
+#	functions as elemental body I.
+#At 8th level,
+#	functions as beast shape III.
+#	functions as elemental body II.
+#	functions as plant shape I.
+#At 10th level,
+#	now functions as elemental body III.
+#	now functions as plant shape II.
+#At 12th level, a druid can also use wild shape to change into a Huge elemental or a Huge plant creature.
+#	now functions as elemental body IV.
+#	now functions as plant shape III.
 ###Block: Shape/Size
 # Template Name				Size		Face/Space	Reach		Visible		Var. Min. Value				Combat bonus				Stat bonus
 Wild Shape (Medium Animal)		SIZE:M	FACE:5	REACH:5	VISIBLE:EXPORT	PREVARGTEQ:WildShapeProgression,1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor	BONUS:STAT|STR|2

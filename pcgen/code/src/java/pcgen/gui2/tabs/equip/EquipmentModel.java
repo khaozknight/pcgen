@@ -26,7 +26,6 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
@@ -38,8 +37,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
 
 import pcgen.core.facade.CharacterFacade;
 import pcgen.core.facade.EquipmentFacade;
@@ -52,33 +49,37 @@ import pcgen.core.facade.event.ReferenceEvent;
 import pcgen.core.facade.event.ReferenceListener;
 import pcgen.core.facade.util.ListFacade;
 import pcgen.gui2.UIPropertyContext;
+import pcgen.gui2.tabs.models.CharacterTreeCellRenderer;
 import pcgen.gui2.util.FontManipulation;
 import pcgen.gui2.util.JTreeTable;
 
 /**
- * The parent model for the selected panel. Maps the various equipment sets for 
+ * The parent model for the selected panel. Maps the various equipment sets for
  * a character.
- * 
+ *
  * @author Connor Petty <cpmeister@users.sourceforge.net>
  */
 public class EquipmentModel implements ListListener<EquipmentSetFacade>, ReferenceListener<EquipmentSetFacade>,
 		TableModelListener
 {
+
 	private static Font normFont;
 	private static Font headerFont;
 	private static Font biggerFont;
 	private static Font lessFont;
 
 	private final CharacterFacade character;
-	private TreeCellRenderer treeRenderer = new TreeRenderer();
-	private Map<EquipmentSetFacade, EquipmentTreeTableModel> equipsetMap;
-	private ListFacade<EquipmentSetFacade> equipsets;
+	private final TreeRenderer treeRenderer;
+	private final Map<EquipmentSetFacade, EquipmentTreeTableModel> equipsetMap;
+	private final ListFacade<EquipmentSetFacade> equipsets;
 	private EquipmentTreeTableModel selectedModel;
-	private JTreeTable treeTable;
+	private final JTreeTable treeTable;
 
-	public EquipmentModel(CharacterFacade character)
+	public EquipmentModel(CharacterFacade character, JTreeTable table)
 	{
 		this.character = character;
+		this.treeTable = table;
+		treeRenderer = (TreeRenderer)treeTable.getTreeCellRenderer();
 
 		equipsetMap = new HashMap<EquipmentSetFacade, EquipmentTreeTableModel>();
 		equipsets = character.getEquipmentSets();
@@ -113,7 +114,7 @@ public class EquipmentModel implements ListListener<EquipmentSetFacade>, Referen
 			treeTable.setColumnModel(model);
 			treeTable.getTableHeader().setResizingAllowed(false);
 		}
-
+		treeTable.setTreeCellRenderer(new TreeRenderer());
 	}
 
 	private static TableColumn createFixedColumn(int index, int width, CellRenderer renderer)
@@ -133,7 +134,7 @@ public class EquipmentModel implements ListListener<EquipmentSetFacade>, Referen
 	@Override
 	public void elementModified(ListEvent<EquipmentSetFacade> e)
 	{
-		
+
 	}
 
 	private static class CellRenderer extends DefaultTableCellRenderer
@@ -169,13 +170,12 @@ public class EquipmentModel implements ListListener<EquipmentSetFacade>, Referen
 
 	}
 
-	public void install(JTreeTable table)
+	public void install()
 	{
-		this.treeTable = table;
-		table.setTreeCellRenderer(treeRenderer);
+		treeRenderer.setCharacter(character);
 		selectedModel = equipsetMap.get(character.getEquipmentSetRef().getReference());
-		table.setTreeTableModel(selectedModel);
-		table.getModel().addTableModelListener(this);
+		treeTable.setTreeTableModel(selectedModel);
+		treeTable.getModel().addTableModelListener(this);
 		realignRowHeights();
 
 		character.getEquipmentSetRef().addReferenceListener(this);
@@ -188,6 +188,7 @@ public class EquipmentModel implements ListListener<EquipmentSetFacade>, Referen
 			treeTable.getModel().removeTableModelListener(this);
 		}
 		character.getEquipmentSetRef().removeReferenceListener(this);
+		treeRenderer.setCharacter(null);
 	}
 
 	private void realignRowHeights()
@@ -247,15 +248,15 @@ public class EquipmentModel implements ListListener<EquipmentSetFacade>, Referen
 		realignRowHeights();
 	}
 
-	private class TreeRenderer extends DefaultTreeCellRenderer
+	private static class TreeRenderer extends CharacterTreeCellRenderer
 	{
 
 		private Map<String, ImageIcon> iconCache = new HashMap<String, ImageIcon>();
 
 		@Override
 		public Component getTreeCellRendererComponent(final JTree tree,
-			Object value, boolean sel, boolean expanded, boolean leaf,
-			final int row, boolean focus)
+				Object value, boolean sel, boolean expanded, boolean leaf,
+				final int row, boolean focus)
 		{
 			String text = String.valueOf(value);
 			boolean isEquipNode = value instanceof EquipNode;

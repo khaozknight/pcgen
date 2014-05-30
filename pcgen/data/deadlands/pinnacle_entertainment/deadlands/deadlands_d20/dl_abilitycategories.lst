@@ -3,3 +3,7 @@
 #
 # Ability Category			Editable or Static?	Change Pool?	Category of Object		Specific choices list		Display Location
 ABILITYCATEGORY:Starting Language	EDITABLE:YES		EDITPOOL:NO		CATEGORY:Special Ability	ABILITYLIST:Starting Language	DISPLAYLOCATION:Racial Abilities
+
+ABILITYCATEGORY:Rowdy Language Selection	VISIBLE:QUALIFY	TYPE:RowdyLanguageSelection	CATEGORY:Special Ability	EDITABLE:YES	EDITPOOL:NO	DISPLAYLOCATION:Class Features
+ABILITYCATEGORY:Scout Language Bonus +2	VISIBLE:QUALIFY	TYPE:ScoutLanguageSelection2	CATEGORY:Special Ability	EDITABLE:YES	EDITPOOL:NO	DISPLAYLOCATION:Class Features
+ABILITYCATEGORY:Scout Language Bonus +4	VISIBLE:QUALIFY	TYPE:ScoutLanguageSelection4	CATEGORY:Special Ability	EDITABLE:YES	EDITPOOL:NO	DISPLAYLOCATION:Class Features

@@ -10,7 +10,7 @@ DEITY:Sarenrae
 CLASS:Cleric	LEVEL:1
 ABILITY:CATEGORY=Favored Class|Cleric
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Channel Energy|Channel Positive Energy ~ Cleric
+ABILITY:CATEGORY=Channel Energy|Cleric ~ Channel Positive Energy
 DEITY:Sarenrae	DOMAIN:Good|Healing
 LANGBONUS:Draconic
 SKILL:Diplomacy			RANK:1
@@ -4271,7 +4271,7 @@ FEAT:Improved Overrun
 FEAT:Intimidating Prowess
 FEAT:Iron Will
 FEAT:Power Attack
-#ABILITY:CATEGORY=Cloud Giant Oversized Weapon|Oversized Weapon ~ Cloud Giant (Morningstar)
+#ABILITY:CATEGORY=Cloud Giant Oversized Weapon|Cloud Giant ~ Oversized Weapon (Morningstar)
 GEAR:Morningstar		SIZE:G	LOCATION:Both Hands
 GEAR:Chain Shirt		SIZE:H	LOCATION:Equipped
 GEAR:Rock (Medium)			LOCATION:Not Carried
@@ -5239,7 +5239,7 @@ SKILL:Climb		RANK:14
 SKILL:Perception	RANK:14
 SKILL:Stealth	RANK:14
 SKILL:Swim		RANK:14
-FEAT:Ability Focus (Paralysis ~ Mohrg)
+FEAT:Ability Focus (Paralysis)
 FEAT:Dodge
 FEAT:Improved Initiative
 FEAT:Lightning Reflexes
@@ -5334,7 +5334,7 @@ SKILL:Perception			RANK:10
 SKILL:Spellcraft			RANK:7
 SKILL:Stealth			RANK:9
 SKILL:Swim				RANK:1
-FEAT:Ability Focus (Charming Gaze ~ Spirit Naga)
+FEAT:Ability Focus (Charming Gaze)
 FEAT:Combat Casting
 FEAT:Lightning Reflexes
 FEAT:Skill Focus (Perception)
@@ -5516,7 +5516,7 @@ GEAR:Greatsword			SIZE:PC	LOCATION:Both Hands
 GEAR:Longbow (Composite)	SIZE:PC	LOCATION:Carried		EQMOD:BOWSTR|+7
 GEAR:Arrows (20)			SIZE:PC	LOCATION:Equipped
 
-STARTPACK:Orc Default	TYPE:Default Monster.Humanoid	VISIBLE:QUALIFY	EQUIPBUY:0	PREMULT:1,[!PRERACE:1,%],[PRERACE:1,Orc]	SOURCEPAGE:p.222
+STARTPACK:Orc Default	TYPE:Default Monster.Humanoid	VISIBLE:QUALIFY	EQUIPBUY:0	PREMULT:1,[!PRERACE:1,%],[PRERACE:1,Orc,RACESUBTYPE=Orc]	SOURCEPAGE:p.222
 RACE:Orc	!PRERACE:1,%
 NAME:Orc
 ALIGN:CE
@@ -5582,7 +5582,7 @@ STAT:STR=10|DEX=11|CON=10|INT=11|WIS=11|CHA=10
 SKILL:Climb		RANK:2
 SKILL:Perception	RANK:2
 SKILL:Stealth	RANK:2
-FEAT:Ability Focus (Poison ~ Phase Spider)
+FEAT:Ability Focus (Poison)
 FEAT:Improved Initiative
 FEAT:Skill Focus (Stealth)
 
@@ -5787,7 +5787,7 @@ NAME:Rust Monster
 ALIGN:TN
 STAT:STR=10|DEX=11|CON=11|INT=10|WIS=11|CHA=10
 SKILL:Perception	RANK:5
-FEAT:Ability Focus (Rust ~ Rust Monster)
+FEAT:Ability Focus (Rust)
 FEAT:Skill Focus (Perception)
 FEAT:Weapon Finesse
 
@@ -6168,7 +6168,7 @@ FEAT:Hover
 FEAT:Improved Critical (Claw)
 FEAT:Improved Initiative
 FEAT:Iron Will
-ABILITY:CATEGORY=Special Ability|Symbol of Fear ~ Gynosphinx|Symbol of Pain ~ Gynosphinx|Symbol of Persuasion ~ Gynosphinx|Symbol of Sleep ~ Gynosphinx|Symbol of Stunning ~ Gynosphinx	FREE:YES
+ABILITY:CATEGORY=Special Ability|Gynosphinx ~ Symbol of Fear|Gynosphinx ~ Symbol of Pain|Gynosphinx ~ Symbol of Persuasion|Gynosphinx ~ Symbol of Sleep|Gynosphinx ~ Symbol of Stunning	FREE:YES
 
 STARTPACK:Spider (Giant) Default	TYPE:Default Monster.Vermin	VISIBLE:QUALIFY	EQUIPBUY:0	PREMULT:1,[!PRERACE:1,%],[PRERACE:1,Spider (Giant)]	SOURCEPAGE:p.258
 RACE:Spider (Giant)	!PRERACE:1,%
@@ -6263,7 +6263,7 @@ STAT:STR=15|DEX=13|CON=14|INT=10|WIS=8|CHA=12
 CLASS:Ranger	LEVEL:1
 ABILITY:CATEGORY=Favored Class|Ranger
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Favored Enemy|Favored Enemy (Humanoid (Dwarf))
+ABILITY:CATEGORY=Favored Enemy|Favored Enemy ~ Humanoid (Dwarf)
 SKILL:Craft (Alchemy)			RANK:1
 SKILL:Heal					RANK:1
 SKILL:Knowledge (Dungeoneering)	RANK:1
@@ -6784,9 +6784,9 @@ SKILL:Survival			RANK:4
 FEAT:Multiattack
 FEAT:Weapon Focus (Gore)
 STAT:STR=10|DEX=11|CON=10|INT=11|WIS=11|CHA=10
-ABILITY:CATEGORY=Half-Celestial Ability Bonus|+2 Strength ~ Template
-ABILITY:CATEGORY=Half-Celestial Ability Bonus|+2 Constitution ~ Template
-ABILITY:CATEGORY=Half-Celestial Ability Bonus|+2 Wisdom ~ Template
+ABILITY:CATEGORY=Half-Celestial Ability Bonus|Template ~ +2 Strength
+ABILITY:CATEGORY=Half-Celestial Ability Bonus|Template ~ +2 Constitution
+ABILITY:CATEGORY=Half-Celestial Ability Bonus|Template ~ +2 Wisdom
 
 
 STARTPACK:Dracolisk		TYPE:Default Monster.Dragon	VISIBLE:QUALIFY	EQUIPBUY:0	PREMULT:1,[PRERACE:1,Basilisk],[!PRERACE:1,%]	SOURCEPAGE:p.170
@@ -6819,9 +6819,9 @@ FEAT:Great Fortitude
 FEAT:Improved Bull Rush
 FEAT:Power Attack
 STAT:STR=11|DEX=10|CON=11|INT=11|WIS=10|CHA=10
-ABILITY:CATEGORY=Half-Fiend Ability Bonus|+2 Strength ~ Template
-ABILITY:CATEGORY=Half-Fiend Ability Bonus|+2 Constitution ~ Template
-ABILITY:CATEGORY=Half-Fiend Ability Bonus|+2 Dexterity ~ Template
+ABILITY:CATEGORY=Half-Fiend Ability Bonus|Template ~ +2 Strength
+ABILITY:CATEGORY=Half-Fiend Ability Bonus|Template ~ +2 Constitution
+ABILITY:CATEGORY=Half-Fiend Ability Bonus|Template ~ +2 Dexterity
 GEAR:Greataxe	SIZE:L	LOCATION:Equipped
 
 
@@ -6941,7 +6941,7 @@ CLASS:Rogue	LEVEL:2
 ABILITY:CATEGORY=Favored Class|Rogue
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Rogue Talent|Fast Stealth
+ABILITY:CATEGORY=Rogue Talent|Rogue Talent ~ Fast Stealth
 SKILL:Acrobatics		RANK:2
 SKILL:Bluff			RANK:2
 SKILL:Climb			RANK:2
@@ -7006,7 +7006,7 @@ GENDER:Female
 TEMPLATE:Vampire
 CLASS:Sorcerer	LEVEL:8
 ABILITY:CATEGORY=Ability Bonus|+2 Charisma
-ABILITY:CATEGORY=Sorcerer Bloodline|Undead Bloodline
+ABILITY:CATEGORY=Sorcerer Bloodline|Sorcerer Bloodline ~ Undead
 ABILITY:CATEGORY=Favored Class|Sorcerer
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point

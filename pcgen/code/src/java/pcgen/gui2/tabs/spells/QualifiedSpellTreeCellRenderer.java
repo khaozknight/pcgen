@@ -23,7 +23,9 @@
 package pcgen.gui2.tabs.spells;
 
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Font;
+import java.lang.ref.WeakReference;
 
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -34,47 +36,35 @@ import pcgen.core.facade.InfoFacade;
 import pcgen.core.facade.SpellFacade;
 import pcgen.core.facade.SpellSupportFacade.SpellNode;
 import pcgen.gui2.UIPropertyContext;
+import pcgen.gui2.tabs.models.CharacterTreeCellRenderer;
 import pcgen.system.LanguageBundle;
 
 /**
- * The Class <code>QualifiedSpellTreeCellRenderer</code> renders a spell tree cell 
- * with colouring indicating if the item can be known by the character. It is 
- * heavily based on QualifiedTreeCellRenderer 
+ * The Class <code>QualifiedSpellTreeCellRenderer</code> renders a spell tree
+ * cell with colouring indicating if the item can be known by the character. It
+ * is heavily based on QualifiedTreeCellRenderer
  *
  * <br/>
- * Last Editor: $Author$
- * Last Edited: $Date$
- * 
+ * Last Editor: $Author$ Last Edited: $Date: 2012-06-05 04:45:57
+ * -0700 (Tue, 05 Jun 2012) $
+ *
  * @author James Dempsey <jdempsey@users.sourceforge.net>
  * @version $Revision$
  */
-public class QualifiedSpellTreeCellRenderer extends DefaultTreeCellRenderer
+public class QualifiedSpellTreeCellRenderer extends CharacterTreeCellRenderer
 {
 
-	/** Version for serialisation. */
-	private static final long serialVersionUID = -5763535370085434234L;
-
-	private CharacterFacade character;
-
 	/**
-	 * Create a new instance of QualifiedSpellTreeCellRenderer
-	 * @param character The character for which this instance is rendering.
+	 * Version for serialisation.
 	 */
-	public QualifiedSpellTreeCellRenderer(CharacterFacade character)
-	{
-		this.character = character;
-		setTextNonSelectionColor(UIPropertyContext.getQualifiedColor());
-		setClosedIcon(null);
-		setLeafIcon(null);
-		setOpenIcon(null);
-	}
+	private static final long serialVersionUID = -5763535370085434234L;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Component getTreeCellRendererComponent(JTree tree, Object value,
-		boolean sel, boolean expanded, boolean leaf, int row, boolean focus)
+			boolean sel, boolean expanded, boolean leaf, int row, boolean focus)
 	{
 		Object obj = ((DefaultMutableTreeNode) value).getUserObject();
 		if ("".equals(obj)) //$NON-NLS-1$

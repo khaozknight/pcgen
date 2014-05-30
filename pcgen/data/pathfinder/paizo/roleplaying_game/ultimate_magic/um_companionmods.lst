@@ -23,12 +23,12 @@ FOLLOWER:FamiliarEP=9		TYPE:Familiar																											BONUS:ABILITYPOOL
 
 ###Block:Pack Members for Druid Pack Lord archetype
 # Class of the Master		Type				Hit Dice	Ability															Automatically Gained Feat	Define							Bonus to Ability Pool					Combat bonus					Stat bonus			Modify VAR							Main Race Type
-FOLLOWER:PackMember1LVL=1	TYPE:Pack Member 1			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember1LVL=1	TYPE:Pack Member 1			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember1LVL=2	TYPE:Pack Member 1	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember1LVL=3	TYPE:Pack Member 1			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember1LVL=4	TYPE:Pack Member 1	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember1LVL=5	TYPE:Pack Member 1	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember1LVL=6	TYPE:Pack Member 1	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember1LVL=6	TYPE:Pack Member 1	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember1LVL=7	TYPE:Pack Member 1																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember1LVL=8	TYPE:Pack Member 1	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember1LVL=9	TYPE:Pack Member 1	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -44,12 +44,12 @@ FOLLOWER:PackMember1LVL=18	TYPE:Pack Member 1	HD:1																														
 FOLLOWER:PackMember1LVL=19	TYPE:Pack Member 1																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember1LVL=20	TYPE:Pack Member 1	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember2LVL=1	TYPE:Pack Member 2			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember2LVL=1	TYPE:Pack Member 2			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember2LVL=2	TYPE:Pack Member 2	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember2LVL=3	TYPE:Pack Member 2			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember2LVL=4	TYPE:Pack Member 2	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember2LVL=5	TYPE:Pack Member 2	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember2LVL=6	TYPE:Pack Member 2	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember2LVL=6	TYPE:Pack Member 2	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember2LVL=7	TYPE:Pack Member 2																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember2LVL=8	TYPE:Pack Member 2	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember2LVL=9	TYPE:Pack Member 2	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -65,12 +65,12 @@ FOLLOWER:PackMember2LVL=18	TYPE:Pack Member 2	HD:1																														
 FOLLOWER:PackMember2LVL=19	TYPE:Pack Member 2																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember2LVL=20	TYPE:Pack Member 2	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember3LVL=1	TYPE:Pack Member 3			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember3LVL=1	TYPE:Pack Member 3			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember3LVL=2	TYPE:Pack Member 3	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember3LVL=3	TYPE:Pack Member 3			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember3LVL=4	TYPE:Pack Member 3	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember3LVL=5	TYPE:Pack Member 3	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember3LVL=6	TYPE:Pack Member 3	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember3LVL=6	TYPE:Pack Member 3	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember3LVL=7	TYPE:Pack Member 3																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember3LVL=8	TYPE:Pack Member 3	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember3LVL=9	TYPE:Pack Member 3	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -86,12 +86,12 @@ FOLLOWER:PackMember3LVL=18	TYPE:Pack Member 3	HD:1																														
 FOLLOWER:PackMember3LVL=19	TYPE:Pack Member 3																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember3LVL=20	TYPE:Pack Member 3	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember4LVL=1	TYPE:Pack Member 4			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember4LVL=1	TYPE:Pack Member 4			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember4LVL=2	TYPE:Pack Member 4	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember4LVL=3	TYPE:Pack Member 4			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember4LVL=4	TYPE:Pack Member 4	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember4LVL=5	TYPE:Pack Member 4	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember4LVL=6	TYPE:Pack Member 4	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember4LVL=6	TYPE:Pack Member 4	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember4LVL=7	TYPE:Pack Member 4																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember4LVL=8	TYPE:Pack Member 4	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember4LVL=9	TYPE:Pack Member 4	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -107,12 +107,12 @@ FOLLOWER:PackMember4LVL=18	TYPE:Pack Member 4	HD:1																														
 FOLLOWER:PackMember4LVL=19	TYPE:Pack Member 4																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember4LVL=20	TYPE:Pack Member 4	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember5LVL=1	TYPE:Pack Member 5			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember5LVL=1	TYPE:Pack Member 5			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember5LVL=2	TYPE:Pack Member 5	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember5LVL=3	TYPE:Pack Member 5			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember5LVL=4	TYPE:Pack Member 5	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember5LVL=5	TYPE:Pack Member 5	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember5LVL=6	TYPE:Pack Member 5	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember5LVL=6	TYPE:Pack Member 5	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember5LVL=7	TYPE:Pack Member 5																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember5LVL=8	TYPE:Pack Member 5	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember5LVL=9	TYPE:Pack Member 5	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -128,12 +128,12 @@ FOLLOWER:PackMember5LVL=18	TYPE:Pack Member 5	HD:1																														
 FOLLOWER:PackMember5LVL=19	TYPE:Pack Member 5																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember5LVL=20	TYPE:Pack Member 5	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember6LVL=1	TYPE:Pack Member 6			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember6LVL=1	TYPE:Pack Member 6			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember6LVL=2	TYPE:Pack Member 6	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember6LVL=3	TYPE:Pack Member 6			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember6LVL=4	TYPE:Pack Member 6	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember6LVL=5	TYPE:Pack Member 6	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember6LVL=6	TYPE:Pack Member 6	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember6LVL=6	TYPE:Pack Member 6	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember6LVL=7	TYPE:Pack Member 6																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember6LVL=8	TYPE:Pack Member 6	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember6LVL=9	TYPE:Pack Member 6	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -149,12 +149,12 @@ FOLLOWER:PackMember6LVL=18	TYPE:Pack Member 6	HD:1																														
 FOLLOWER:PackMember6LVL=19	TYPE:Pack Member 6																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember6LVL=20	TYPE:Pack Member 6	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember7LVL=1	TYPE:Pack Member 7			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember7LVL=1	TYPE:Pack Member 7			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember7LVL=2	TYPE:Pack Member 7	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember7LVL=3	TYPE:Pack Member 7			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember7LVL=4	TYPE:Pack Member 7	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember7LVL=5	TYPE:Pack Member 7	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember7LVL=6	TYPE:Pack Member 7	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember7LVL=6	TYPE:Pack Member 7	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember7LVL=7	TYPE:Pack Member 7																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember7LVL=8	TYPE:Pack Member 7	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember7LVL=9	TYPE:Pack Member 7	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -170,12 +170,12 @@ FOLLOWER:PackMember7LVL=18	TYPE:Pack Member 7	HD:1																														
 FOLLOWER:PackMember7LVL=19	TYPE:Pack Member 7																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember7LVL=20	TYPE:Pack Member 7	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember8LVL=1	TYPE:Pack Member 8			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember8LVL=1	TYPE:Pack Member 8			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember8LVL=2	TYPE:Pack Member 8	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember8LVL=3	TYPE:Pack Member 8			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember8LVL=4	TYPE:Pack Member 8	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember8LVL=5	TYPE:Pack Member 8	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember8LVL=6	TYPE:Pack Member 8	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember8LVL=6	TYPE:Pack Member 8	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember8LVL=7	TYPE:Pack Member 8																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember8LVL=8	TYPE:Pack Member 8	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember8LVL=9	TYPE:Pack Member 8	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -191,12 +191,12 @@ FOLLOWER:PackMember8LVL=18	TYPE:Pack Member 8	HD:1																														
 FOLLOWER:PackMember8LVL=19	TYPE:Pack Member 8																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember8LVL=20	TYPE:Pack Member 8	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember9LVL=1	TYPE:Pack Member 9			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember9LVL=1	TYPE:Pack Member 9			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember9LVL=2	TYPE:Pack Member 9	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember9LVL=3	TYPE:Pack Member 9			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember9LVL=4	TYPE:Pack Member 9	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember9LVL=5	TYPE:Pack Member 9	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember9LVL=6	TYPE:Pack Member 9	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember9LVL=6	TYPE:Pack Member 9	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember9LVL=7	TYPE:Pack Member 9																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember9LVL=8	TYPE:Pack Member 9	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember9LVL=9	TYPE:Pack Member 9	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -212,12 +212,12 @@ FOLLOWER:PackMember9LVL=18	TYPE:Pack Member 9	HD:1																														
 FOLLOWER:PackMember9LVL=19	TYPE:Pack Member 9																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember9LVL=20	TYPE:Pack Member 9	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember10LVL=1	TYPE:Pack Member 10			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember10LVL=1	TYPE:Pack Member 10			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember10LVL=2	TYPE:Pack Member 10	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember10LVL=3	TYPE:Pack Member 10			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember10LVL=4	TYPE:Pack Member 10	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember10LVL=5	TYPE:Pack Member 10	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember10LVL=6	TYPE:Pack Member 10	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember10LVL=6	TYPE:Pack Member 10	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember10LVL=7	TYPE:Pack Member 10																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember10LVL=8	TYPE:Pack Member 10	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember10LVL=9	TYPE:Pack Member 10	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -233,12 +233,12 @@ FOLLOWER:PackMember10LVL=18	TYPE:Pack Member 10	HD:1																												
 FOLLOWER:PackMember10LVL=19	TYPE:Pack Member 10																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember10LVL=20	TYPE:Pack Member 10	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember11LVL=1	TYPE:Pack Member 11			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember11LVL=1	TYPE:Pack Member 11			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember11LVL=2	TYPE:Pack Member 11	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember11LVL=3	TYPE:Pack Member 11			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember11LVL=4	TYPE:Pack Member 11	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember11LVL=5	TYPE:Pack Member 11	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember11LVL=6	TYPE:Pack Member 11	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember11LVL=6	TYPE:Pack Member 11	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember11LVL=7	TYPE:Pack Member 11																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember11LVL=8	TYPE:Pack Member 11	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember11LVL=9	TYPE:Pack Member 11	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -254,12 +254,12 @@ FOLLOWER:PackMember11LVL=18	TYPE:Pack Member 11	HD:1																												
 FOLLOWER:PackMember11LVL=19	TYPE:Pack Member 11																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember11LVL=20	TYPE:Pack Member 11	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember12LVL=1	TYPE:Pack Member 12			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember12LVL=1	TYPE:Pack Member 12			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember12LVL=2	TYPE:Pack Member 12	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember12LVL=3	TYPE:Pack Member 12			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember12LVL=4	TYPE:Pack Member 12	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember12LVL=5	TYPE:Pack Member 12	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember12LVL=6	TYPE:Pack Member 12	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember12LVL=6	TYPE:Pack Member 12	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember12LVL=7	TYPE:Pack Member 12																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember12LVL=8	TYPE:Pack Member 12	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember12LVL=9	TYPE:Pack Member 12	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -275,12 +275,12 @@ FOLLOWER:PackMember12LVL=18	TYPE:Pack Member 12	HD:1																												
 FOLLOWER:PackMember12LVL=19	TYPE:Pack Member 12																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember12LVL=20	TYPE:Pack Member 12	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember13LVL=1	TYPE:Pack Member 13			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember13LVL=1	TYPE:Pack Member 13			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember13LVL=2	TYPE:Pack Member 13	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember13LVL=3	TYPE:Pack Member 13			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember13LVL=4	TYPE:Pack Member 13	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember13LVL=5	TYPE:Pack Member 13	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember13LVL=6	TYPE:Pack Member 13	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember13LVL=6	TYPE:Pack Member 13	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember13LVL=7	TYPE:Pack Member 13																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember13LVL=8	TYPE:Pack Member 13	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember13LVL=9	TYPE:Pack Member 13	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -296,12 +296,12 @@ FOLLOWER:PackMember13LVL=18	TYPE:Pack Member 13	HD:1																												
 FOLLOWER:PackMember13LVL=19	TYPE:Pack Member 13																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember13LVL=20	TYPE:Pack Member 13	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember14LVL=1	TYPE:Pack Member 14			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember14LVL=1	TYPE:Pack Member 14			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember14LVL=2	TYPE:Pack Member 14	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember14LVL=3	TYPE:Pack Member 14			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember14LVL=4	TYPE:Pack Member 14	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember14LVL=5	TYPE:Pack Member 14	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember14LVL=6	TYPE:Pack Member 14	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember14LVL=6	TYPE:Pack Member 14	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember14LVL=7	TYPE:Pack Member 14																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember14LVL=8	TYPE:Pack Member 14	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember14LVL=9	TYPE:Pack Member 14	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -317,12 +317,12 @@ FOLLOWER:PackMember14LVL=18	TYPE:Pack Member 14	HD:1																												
 FOLLOWER:PackMember14LVL=19	TYPE:Pack Member 14																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember14LVL=20	TYPE:Pack Member 14	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember15LVL=1	TYPE:Pack Member 15			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember15LVL=1	TYPE:Pack Member 15			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember15LVL=2	TYPE:Pack Member 15	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember15LVL=3	TYPE:Pack Member 15			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember15LVL=4	TYPE:Pack Member 15	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember15LVL=5	TYPE:Pack Member 15	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember15LVL=6	TYPE:Pack Member 15	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember15LVL=6	TYPE:Pack Member 15	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember15LVL=7	TYPE:Pack Member 15																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember15LVL=8	TYPE:Pack Member 15	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember15LVL=9	TYPE:Pack Member 15	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -338,12 +338,12 @@ FOLLOWER:PackMember15LVL=18	TYPE:Pack Member 15	HD:1																												
 FOLLOWER:PackMember15LVL=19	TYPE:Pack Member 15																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember15LVL=20	TYPE:Pack Member 15	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember16LVL=1	TYPE:Pack Member 16			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember16LVL=1	TYPE:Pack Member 16			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember16LVL=2	TYPE:Pack Member 16	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember16LVL=3	TYPE:Pack Member 16			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember16LVL=4	TYPE:Pack Member 16	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember16LVL=5	TYPE:Pack Member 16	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember16LVL=6	TYPE:Pack Member 16	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember16LVL=6	TYPE:Pack Member 16	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember16LVL=7	TYPE:Pack Member 16																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember16LVL=8	TYPE:Pack Member 16	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember16LVL=9	TYPE:Pack Member 16	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -359,12 +359,12 @@ FOLLOWER:PackMember16LVL=18	TYPE:Pack Member 16	HD:1																												
 FOLLOWER:PackMember16LVL=19	TYPE:Pack Member 16																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember16LVL=20	TYPE:Pack Member 16	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember17LVL=1	TYPE:Pack Member 17			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember17LVL=1	TYPE:Pack Member 17			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember17LVL=2	TYPE:Pack Member 17	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember17LVL=3	TYPE:Pack Member 17			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember17LVL=4	TYPE:Pack Member 17	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember17LVL=5	TYPE:Pack Member 17	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember17LVL=6	TYPE:Pack Member 17	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember17LVL=6	TYPE:Pack Member 17	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember17LVL=7	TYPE:Pack Member 17																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember17LVL=8	TYPE:Pack Member 17	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember17LVL=9	TYPE:Pack Member 17	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -380,12 +380,12 @@ FOLLOWER:PackMember17LVL=18	TYPE:Pack Member 17	HD:1																												
 FOLLOWER:PackMember17LVL=19	TYPE:Pack Member 17																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember17LVL=20	TYPE:Pack Member 17	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember18LVL=1	TYPE:Pack Member 18			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember18LVL=1	TYPE:Pack Member 18			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember18LVL=2	TYPE:Pack Member 18	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember18LVL=3	TYPE:Pack Member 18			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember18LVL=4	TYPE:Pack Member 18	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember18LVL=5	TYPE:Pack Member 18	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember18LVL=6	TYPE:Pack Member 18	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember18LVL=6	TYPE:Pack Member 18	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember18LVL=7	TYPE:Pack Member 18																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember18LVL=8	TYPE:Pack Member 18	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember18LVL=9	TYPE:Pack Member 18	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -401,12 +401,12 @@ FOLLOWER:PackMember18LVL=18	TYPE:Pack Member 18	HD:1																												
 FOLLOWER:PackMember18LVL=19	TYPE:Pack Member 18																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember18LVL=20	TYPE:Pack Member 18	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember19LVL=1	TYPE:Pack Member 19			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember19LVL=1	TYPE:Pack Member 19			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember19LVL=2	TYPE:Pack Member 19	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember19LVL=3	TYPE:Pack Member 19			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember19LVL=4	TYPE:Pack Member 19	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember19LVL=5	TYPE:Pack Member 19	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember19LVL=6	TYPE:Pack Member 19	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember19LVL=6	TYPE:Pack Member 19	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember19LVL=7	TYPE:Pack Member 19																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember19LVL=8	TYPE:Pack Member 19	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember19LVL=9	TYPE:Pack Member 19	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -422,12 +422,12 @@ FOLLOWER:PackMember19LVL=18	TYPE:Pack Member 19	HD:1																												
 FOLLOWER:PackMember19LVL=19	TYPE:Pack Member 19																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember19LVL=20	TYPE:Pack Member 19	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 
-FOLLOWER:PackMember20LVL=1	TYPE:Pack Member 20			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Bonus Tricks|Link|Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
+FOLLOWER:PackMember20LVL=1	TYPE:Pack Member 20			ABILITY:Special Ability|AUTOMATIC|Animal Tricks and Training|Companion ~ Bonus Tricks|Companion ~ Link|Companion ~ Share Spells						DEFINE:MasterLevel|0	DEFINE:BonusTricks|0																				BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1	RACETYPE:Animal
 FOLLOWER:PackMember20LVL=2	TYPE:Pack Member 20	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember20LVL=3	TYPE:Pack Member 20			ABILITY:Special Ability|AUTOMATIC|Evasion																															BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember20LVL=4	TYPE:Pack Member 20	HD:1																															BONUS:ABILITYPOOL|Companion Stat Increase|1												BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember20LVL=5	TYPE:Pack Member 20	HD:1																																																		BONUS:VAR|MasterLevel|1
-FOLLOWER:PackMember20LVL=6	TYPE:Pack Member 20	HD:1		ABILITY:Special Ability|AUTOMATIC|Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
+FOLLOWER:PackMember20LVL=6	TYPE:Pack Member 20	HD:1		ABILITY:Special Ability|AUTOMATIC|Companion ~ Devotion																														BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
 FOLLOWER:PackMember20LVL=7	TYPE:Pack Member 20																																																			BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember20LVL=8	TYPE:Pack Member 20	HD:1																																																		BONUS:VAR|MasterLevel|1
 FOLLOWER:PackMember20LVL=9	TYPE:Pack Member 20	HD:1																		AUTO:FEAT|Multiattack										BONUS:ABILITYPOOL|Companion Stat Increase|1	BONUS:COMBAT|AC|2|TYPE=NaturalArmor.STACK	BONUS:STAT|STR,DEX|1	BONUS:VAR|MasterLevel|1	BONUS:VAR|BonusTricks|1
@@ -446,16 +446,16 @@ FOLLOWER:PackMember20LVL=20	TYPE:Pack Member 20	HD:1																												
 
 ###Block: Black Blade abilities
 # Class of the Master	Type			Ability																					Copy Masters Checks	Bonus to skill rank				Stat bonus				Modify VAR
-FOLLOWER:BBLevel=3	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade Arcane Pool|Ego ~ Black Blade|Enhancement Bonus ~ Black Blade|Senses ~ Black Blade	COPYMASTERCHECK:MASTER
-FOLLOWER:BBLevel=3	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade Strike|Telepathy ~ Black Blade|Unbreakable ~ Black Blade																BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|5
-FOLLOWER:BBLevel=5	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Energy Attunement ~ Black Blade																BONUS:SKILLRANK|Knowledge (Arcana)|INT	BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|3
+FOLLOWER:BBLevel=3	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade Arcane Pool|Black Blade ~ Ego|Black Blade ~ Enhancement Bonus|Black Blade ~ Senses	COPYMASTERCHECK:MASTER
+FOLLOWER:BBLevel=3	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade Strike|Black Blade ~ Telepathy|Black Blade ~ Unbreakable																BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|5
+FOLLOWER:BBLevel=5	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade ~ Energy Attunement																BONUS:SKILLRANK|Knowledge (Arcana)|INT	BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|3
 FOLLOWER:BBLevel=7	TYPE:Black Blade																																		BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEgo|2
-FOLLOWER:BBLevel=9	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Teleport Blade ~ Black Blade																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|2
+FOLLOWER:BBLevel=9	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade ~ Teleport Blade																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|2
 FOLLOWER:BBLevel=11	TYPE:Black Blade																																		BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEgo|2
-FOLLOWER:BBLevel=13	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Transfer Arcana ~ Black Blade																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|2
+FOLLOWER:BBLevel=13	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade ~ Transfer Arcana																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|2
 FOLLOWER:BBLevel=15	TYPE:Black Blade																																		BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEgo|2
-FOLLOWER:BBLevel=17	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Spell Defense ~ Black Blade																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|4
-FOLLOWER:BBLevel=19	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Life Drinker ~ Black Blade																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEgo|2
+FOLLOWER:BBLevel=17	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade ~ Spell Defense																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEnhancement|1	BONUS:VAR|BBEgo|4
+FOLLOWER:BBLevel=19	TYPE:Black Blade	ABILITY:Special Ability|AUTOMATIC|Black Blade ~ Life Drinker																							BONUS:STAT|INT,WIS,CHA|1	BONUS:VAR|BBEgo|2
 
 # Race of familiar		Type			Virtual Feat
 MASTERBONUSRACE:Black Blade	TYPE:Black Blade	VFEAT:Alertness

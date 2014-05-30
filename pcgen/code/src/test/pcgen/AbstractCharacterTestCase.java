@@ -6,16 +6,18 @@
  */
 package pcgen;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import pcgen.cdom.base.FormulaFactory;
+import pcgen.cdom.base.UserSelection;
+import pcgen.cdom.content.CNAbility;
+import pcgen.cdom.content.CNAbilityFactory;
 import pcgen.cdom.enumeration.FormulaKey;
 import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.enumeration.StringKey;
 import pcgen.cdom.enumeration.VariableKey;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
 import pcgen.core.GameMode;
@@ -301,62 +303,65 @@ abstract public class AbstractCharacterTestCase extends PCGenTestCase
 	 * @return <tt>true</tt> if the character has the ability with the
 	 *         criteria specified.
 	 */
-	public boolean hasAbility(PlayerCharacter pc, final AbilityCategory aCategory, final Nature anAbilityType, final Ability anAbility)
+	public boolean hasAbility(PlayerCharacter pc,
+		final AbilityCategory aCategory, final Nature anAbilityType,
+		final Ability anAbility)
 	{
-		final List<AbilityCategory> categories;
-		if (aCategory == null)
+		Collection<CNAbility> cnabilities = pc.getCNAbilities(aCategory, anAbilityType);
+		for (CNAbility cna : cnabilities)
 		{
-			// A null category means we have to check all categories for
-			// abilities of the same innate category as the passed in one.
-			categories = new ArrayList<AbilityCategory>();
-			final Collection<AbilityCategory> allCategories = SettingsHandler.getGame().getAllAbilityCategories();
-			for (final AbilityCategory cat : allCategories)
+			Ability a = cna.getAbility();
+			if (a.getKeyName().equals(anAbility.getKeyName()))
 			{
-				if (cat.getParentCategory().equals(anAbility.getCDOMCategory()))
-				{
-					categories.add(cat);
-				}
-			}
-		} else
-		{
-			categories = new ArrayList<AbilityCategory>();
-			categories.add(aCategory);
-		}
-
-		final int start, end;
-		if (anAbilityType == Nature.ANY)
-		{
-			start = 0;
-			end = Nature.values().length - 2;
-		} else
-		{
-			start = end = anAbilityType.ordinal();
-		}
-		for (int i = start; i <= end; i++)
-		{
-			final Nature nature = Nature.values()[i];
-			boolean hasIt = false;
-			for (final AbilityCategory cat : categories)
-			{
-				switch (nature)
-				{
-				case NORMAL:
-					hasIt = pc.hasRealAbility(cat, anAbility);
-					break;
-				case AUTOMATIC:
-					hasIt = pc.hasAutomaticAbility(cat, anAbility);
-					break;
-				case VIRTUAL:
-					hasIt = pc.hasVirtualAbility(cat, anAbility);
-					break;
-				}
-				if (hasIt)
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 		return false;
 	}
 
+	public static CNAbility applyAbility(PlayerCharacter character,
+		AbilityCategory cat, Ability a, String assoc)
+	{
+		if (a.getCDOMCategory() == null)
+		{
+			fail("Attempt to apply an Ability " + a.getKeyName()
+				+ " that never received a Category");
+		}
+		CNAbility cna = CNAbilityFactory.getCNAbility(cat, Nature.NORMAL, a);
+		CNAbilitySelection cnas = new CNAbilitySelection(cna, assoc);
+		character.addAbility(cnas, UserSelection.getInstance(),
+			UserSelection.getInstance());
+		return cna;
+	}
+
+	protected void addAbility(AbilityCategory cat, Ability a)
+	{
+		if (a.getSafe(ObjectKey.MULTIPLE_ALLOWED))
+		{
+			fail("addAbility takes Mult:NO Abilities");
+		}
+		applyAbility(character, cat, a, null);
+	}
+
+	protected void removeAbility(AbilityCategory cat, Ability a)
+	{
+		if (a.getSafe(ObjectKey.MULTIPLE_ALLOWED))
+		{
+			fail("addAbility takes Mult:NO Abilities");
+		}
+		CNAbility cna = CNAbilityFactory.getCNAbility(cat, Nature.NORMAL, a);
+		character.removeAbility(new CNAbilitySelection(cna, null),
+			UserSelection.getInstance(), UserSelection.getInstance());
+	}
+
+	protected Ability addMultYesAbility(AbilityCategory cat, Ability a)
+	{
+		return a;
+	}
+	
+	protected CNAbility finalize(Ability a, String string,
+		PlayerCharacter pc, AbilityCategory cat)
+	{
+		return applyAbility(pc, cat, a, string);
+	}
 }

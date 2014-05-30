@@ -30,7 +30,6 @@ import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.enumeration.SkillArmorCheck;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
-import pcgen.core.AbilityUtilities;
 import pcgen.core.Globals;
 import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
@@ -139,13 +138,12 @@ public class SkillCostDisplayTest extends AbstractCharacterTestCase
 		assertEquals("Initial state", "", SkillCostDisplay.getModifierExplanation(
 			bluff, pc, false));
 
-		Ability sf = pc.addAbilityNeedCheck(AbilityCategory.FEAT, skillFocus);
-		AbilityUtilities.modAbility(pc, sf, "KEY_Bluff", AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(pc, AbilityCategory.FEAT, skillFocus, "KEY_Bluff");
 		pc.calcActiveBonuses();
 		assertEquals("Bonus after skill focus", "+3[Skill Focus]",
 			SkillCostDisplay.getModifierExplanation(bluff, pc, false));
 
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, persuasive);
+		addAbility(AbilityCategory.FEAT, persuasive);
 		String modifierExplanation = SkillCostDisplay
 			.getModifierExplanation(bluff, pc, false);
 		// Have to account for random order of the bonuses. 

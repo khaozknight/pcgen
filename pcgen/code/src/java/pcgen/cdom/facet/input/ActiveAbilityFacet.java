@@ -726,7 +726,7 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 		return Collections.emptySet();
 	}
 
-	public Collection<? extends CNAbility> getCNAbilities(CharID id)
+	public Collection<CNAbility> getCNAbilities(CharID id)
 	{
 		Map<Category<Ability>, Map<Nature, Set<Ability>>> catMap = getCachedMap(id);
 		Set<CNAbility> set = new HashSet<CNAbility>();
@@ -751,7 +751,7 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 		return set;
 	}
 
-	public Collection<? extends CNAbility> getCNAbilities(CharID id,
+	public Collection<CNAbility> getCNAbilities(CharID id,
 		Category<Ability> cat, Nature n)
 	{
 		Map<Category<Ability>, Map<Nature, Set<Ability>>> catMap = getCachedMap(id);
@@ -780,7 +780,7 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 		return set;
 	}
 
-	public Collection<? extends CNAbility> getCNAbilities(CharID id,
+	public Collection<CNAbility> getCNAbilities(CharID id,
 		Ability ability)
 	{
 		Category<Ability> cat = ability.getCDOMCategory();
@@ -838,7 +838,7 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 		return null;
 	}
 
-	public Collection<? extends CNAbility> getCNAbilities(CharID id,
+	public Collection<CNAbility> getCNAbilities(CharID id,
 		Category<Ability> cat)
 	{
 		Map<Category<Ability>, Map<Nature, Set<Ability>>> catMap = getCachedMap(id);
@@ -865,7 +865,7 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 		return set;
 	}
 
-	public boolean hasAbilityKeyed(CharID id, AbilityCategory cat, String aKey)
+	public boolean hasAbilityKeyed(CharID id, Category<Ability> cat, String aKey)
 	{
 		Map<Category<Ability>, Map<Nature, Set<Ability>>> catMap = getCachedMap(id);
 		if (catMap != null)
@@ -917,7 +917,7 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 		return false;
 	}
 
-	public Collection<? extends CNAbility> getPoolAbilities(CharID id,
+	public Collection<CNAbility> getPoolAbilities(CharID id,
 		Category<Ability> cat)
 	{
 		Map<Category<Ability>, Map<Nature, Set<Ability>>> catMap = getCachedMap(id);
@@ -940,7 +940,7 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 		return set;
 	}
 
-	public Collection<? extends CNAbility> getPoolAbilities(CharID id,
+	public Collection<CNAbility> getPoolAbilities(CharID id,
 		Category<Ability> cat, Nature n)
 	{
 		Map<Category<Ability>, Map<Nature, Set<Ability>>> catMap = getCachedMap(id);
@@ -964,6 +964,26 @@ public class ActiveAbilityFacet extends AbstractDataFacet<CharID, Ability>
 			}
 		}
 		return set;
+	}
+
+	public boolean hasAbilityInPool(CharID id, AbilityCategory cat)
+	{
+		Map<Category<Ability>, Map<Nature, Set<Ability>>> catMap = getCachedMap(id);
+		if (catMap != null)
+		{
+			for (Entry<Category<Ability>, Map<Nature, Set<Ability>>> catME : catMap.entrySet())
+			{
+				Category<Ability> c = catME.getKey();
+				if (c.equals(cat))
+				{
+					if (!catME.getValue().values().isEmpty())
+					{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 }

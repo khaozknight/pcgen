@@ -29,9 +29,11 @@ import java.util.List;
 import pcgen.base.util.RandomUtil;
 import pcgen.base.util.WeightedCollection;
 import pcgen.cdom.base.Constants;
+import pcgen.cdom.content.CNAbility;
 import pcgen.cdom.content.RollMethod;
 import pcgen.cdom.enumeration.Gender;
 import pcgen.cdom.enumeration.ListKey;
+import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.enumeration.StringKey;
 import pcgen.cdom.helper.ClassSource;
@@ -258,7 +260,6 @@ public class NPCGenerator
 				}
 			}
 
-			aPC.addSkill(skill);
 			SkillRankControl.modRanks(ranks, aClass, false, aPC, skill);
 			// Add weight to skills we select to try and encourage us to select
 			// them again.
@@ -366,7 +367,8 @@ public class NPCGenerator
 				// We will leave the feat because we may qualify later.
 				continue;
 			}
-			AbilityUtilities.modAbility(aPC, ability, null, AbilityCategory.FEAT);
+			AbilityUtilities.driveChooseAndAdd(new CNAbility(
+				AbilityCategory.FEAT, ability, Nature.NORMAL), aPC, true);
 		}
 	}
 

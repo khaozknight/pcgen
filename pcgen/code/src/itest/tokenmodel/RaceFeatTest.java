@@ -21,12 +21,13 @@ import java.util.Collection;
 
 import org.junit.Test;
 
+import pcgen.cdom.content.CNAbility;
 import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.enumeration.ObjectKey;
+import pcgen.cdom.facet.DirectAbilityFacet;
 import pcgen.cdom.facet.FacetLibrary;
-import pcgen.cdom.facet.base.AbstractListFacet;
 import pcgen.cdom.facet.input.RaceInputFacet;
-import pcgen.cdom.helper.CategorizedAbilitySelection;
+import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
 import pcgen.core.Race;
@@ -63,12 +64,12 @@ public class RaceFeatTest extends AbstractTokenModelTest
 			fail("Test Setup Failed");
 		}
 		finishLoad();
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 		raceFacet.directSet(id, source, getAssoc());
 		assertTrue(containsExpected(null));
-		assertEquals(1, directAbilityFacet.getCount(id));
+		assertEquals(1, directAbilityFacet.size(id));
 		raceFacet.remove(id);
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 	}
 
 	@Test
@@ -90,12 +91,12 @@ public class RaceFeatTest extends AbstractTokenModelTest
 		//Do a second time!
 		token.parseToken(context, source, "Granted");
 		finishLoad();
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 		raceFacet.directSet(id, source, getAssoc());
 		assertTrue(containsExpected(""));
-		assertEquals(2, directAbilityFacet.getCount(id));
+		assertEquals(2, directAbilityFacet.size(id));
 		raceFacet.remove(id);
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 	}
 
 	@Test
@@ -129,20 +130,21 @@ public class RaceFeatTest extends AbstractTokenModelTest
 			fail("Test Setup Failed");
 		}
 		finishLoad();
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 		raceInputFacet.set(id, source);
 		assertTrue(containsExpected("Longsword"));
-		assertEquals(1, directAbilityFacet.getCount(id));
+		assertEquals(1, directAbilityFacet.size(id));
 		raceInputFacet.remove(id);
-		assertEquals(0, directAbilityFacet.getCount(id));
+		assertEquals(0, directAbilityFacet.size(id));
 	}
 
 	protected boolean containsExpected(String selection)
 	{
-		Collection<CategorizedAbilitySelection> casSet =
+		Collection<CNAbilitySelection> casSet =
 				getTargetFacet().getSet(id);
-		for (CategorizedAbilitySelection cas : casSet)
+		for (CNAbilitySelection cnas : casSet)
 		{
+			CNAbility cas = cnas.getCNAbility();
 			boolean categoryExpected =
 					cas.getAbilityCategory() == AbilityCategory.FEAT;
 			if (!categoryExpected)
@@ -167,7 +169,7 @@ public class RaceFeatTest extends AbstractTokenModelTest
 			}
 			if (selection == null)
 			{
-				if (cas.getSelection() != null)
+				if (cnas.getSelection() != null)
 				{
 					System.err.println("Selection Mismatch");
 					return false;
@@ -175,7 +177,7 @@ public class RaceFeatTest extends AbstractTokenModelTest
 			}
 			else
 			{
-				boolean selectionExpected = cas.getSelection().equals(selection);
+				boolean selectionExpected = cnas.getSelection().equals(selection);
 				if (!selectionExpected)
 				{
 					System.err.println("Selection Mismatch");
@@ -187,7 +189,7 @@ public class RaceFeatTest extends AbstractTokenModelTest
 		return false;
 	}
 
-	private AbstractListFacet<CategorizedAbilitySelection> getTargetFacet()
+	private DirectAbilityFacet getTargetFacet()
 	{
 		return directAbilityFacet;
 	}

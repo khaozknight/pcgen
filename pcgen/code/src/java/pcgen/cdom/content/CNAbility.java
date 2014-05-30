@@ -35,7 +35,8 @@ public class CNAbility extends ConcretePrereqObject implements
 	/**
 	 * The Ability that this CNAbility represents
 	 */
-	private final Ability ability;
+	private Ability ability;
+//	private final Ability ability;
 
 	/**
 	 * The Nature of the Ability
@@ -52,6 +53,39 @@ public class CNAbility extends ConcretePrereqObject implements
 	 */
 	public CNAbility(Category<Ability> cat, Ability abil, Nature nat)
 	{
+		if (cat == null)
+		{
+			throw new IllegalArgumentException(
+				"Cannot build CNAbility with null Category");
+		}
+		if (abil == null)
+		{
+			throw new IllegalArgumentException(
+				"Cannot build CNAbility with null Ability");
+		}
+		if (nat == null)
+		{
+			throw new IllegalArgumentException(
+				"Cannot build CNAbility with null Nature");
+		}
+		if (abil.getKeyName() == null || abil.getKeyName().length() == 0)
+		{
+			throw new IllegalArgumentException(
+				"Cannot build CNAbility when Ability has no key");
+		}
+		Category<Ability> origCategory = abil.getCDOMCategory();
+		if (origCategory == null)
+		{
+			throw new IllegalArgumentException(
+				"Cannot build CNAbility when Ability has null original Category");
+		}
+		if (!cat.getParentCategory().equals(origCategory))
+		{
+			throw new IllegalArgumentException(
+				"Cannot build CNAbility with incompatible Category: " + cat
+					+ " is not compatible with Ability's Category: "
+					+ origCategory);
+		}
 		category = cat;
 		ability = abil;
 		nature = nat;
@@ -153,6 +187,11 @@ public class CNAbility extends ConcretePrereqObject implements
 		}
 		compare = this.nature.compareTo(other.nature);
 		return compare;
+	}
+
+	public void doMagicalAndEvilThings(Ability clone)
+	{
+		ability = clone;
 	}
 
 }

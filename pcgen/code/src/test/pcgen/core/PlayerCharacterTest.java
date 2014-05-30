@@ -435,7 +435,7 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		character.incrementClassLevel(2, pcClass, true);
 
 		final Float result =
-				character.getVariableValue("(SCORE/2).TRUNC-5", "STAT:STR");
+				character.getVariableValue("floor(SCORE/2)-5", "STAT:STR");
 		assertEquals("Stat modifier not correct", 3.0, result.doubleValue(),
 			0.1);
 	}
@@ -503,7 +503,7 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		is((int) character.getRemainingFeatPoints(true), eq(2), "Start with 2 feats");
 		try
 		{
-			AbilityUtilities.modAbility(character, toughness, null, AbilityCategory.FEAT);
+			AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, toughness, "");
 			is((int) character.getRemainingFeatPoints(true), eq(1), "Only 1 feat used");
 		}
 		catch (HeadlessException e)
@@ -655,21 +655,18 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		guiSkill.addToListFor(ListKey.TYPE, Type.getConstant("INT"));
 		guiSkill.put(ObjectKey.VISIBILITY, Visibility.DISPLAY_ONLY);
 		SkillRankControl.modRanks(1.0, pcClass, true, pc, guiSkill);
-		pc.addSkill(guiSkill);
 
 		context.unconditionallyProcess(outputSkill, "CLASSES", "MyClass");
 		outputSkill.setName("Output");
 		outputSkill.addToListFor(ListKey.TYPE, Type.getConstant("INT"));
 		outputSkill.put(ObjectKey.VISIBILITY, Visibility.OUTPUT_ONLY);
 		SkillRankControl.modRanks(1.0, pcClass, true, pc, outputSkill);
-		pc.addSkill(outputSkill);
 
 		context.unconditionallyProcess(defaultSkill, "CLASSES", "MyClass");
 		defaultSkill.setName("Default");
 		defaultSkill.addToListFor(ListKey.TYPE, Type.getConstant("INT"));
 		defaultSkill.put(ObjectKey.VISIBILITY, Visibility.DEFAULT);
 		SkillRankControl.modRanks(1.0, pcClass, true, pc, defaultSkill);
-		pc.addSkill(defaultSkill);
 
 		// Test retrieved list
 		Collection<Skill> skillList = pc.getSkillSet();
@@ -954,17 +951,17 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		
 		try
 		{
-			AbilityUtilities.modAbility(pc, toughness, null, AbilityCategory.FEAT);
+			AbstractCharacterTestCase.applyAbility(pc, AbilityCategory.FEAT, toughness, "");
 			//pc.calcActiveBonuses();
 			assertEquals("Check application of single bonus", base+3, pc.getTotalBonusTo(
 				"HP", "CURRENTMAX"));
-			AbilityUtilities.modAbility(pc, toughness, null, AbilityCategory.FEAT);
+			AbstractCharacterTestCase.applyAbility(pc, AbilityCategory.FEAT, toughness, "");
 			pc.calcActiveBonuses();
 			assertEquals("Check application of second bonus", base+6, pc.getTotalBonusTo(
 				"HP", "CURRENTMAX"));
 
-			AbilityUtilities.modAbility(pc, toughness, "Toughness",
-					specialFeatCat);
+			AbstractCharacterTestCase.applyAbility(pc, specialFeatCat, toughness,
+					"Toughness");
 			pc.calcActiveBonuses();
 			assertEquals(
 				"Check application of third bonus in different catgeory",
@@ -1029,7 +1026,7 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		assertEquals("Before bonus, no temp no equip", 0, pc.getPartialStatBonusFor(str, false, false));
 		assertEquals("Before bonus, temp no equip", 0, pc.getPartialStatBonusFor(str, true, false));
 
-		AbilityUtilities.modAbility(pc, strBonusAbility, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(pc, AbilityCategory.FEAT, strBonusAbility, null);
 		pc.calcActiveBonuses();
 
 		assertEquals("After bonus, no temp no equip", 2, pc.getPartialStatBonusFor(str, false, false));
@@ -1058,7 +1055,7 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		PlayerCharacter pc = getCharacter();
 		CharacterDisplay display = pc.getDisplay();
 		
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, ab);
+		addAbility(AbilityCategory.FEAT, ab);
 		CDOMSingleRef<CompanionList> ref = new CDOMSimpleSingleRef<CompanionList>(
 				CompanionList.class, "Mount");
 		CDOMReference<Race> race  = new  CDOMDirectSingleRef<Race>(giantRace);
@@ -1075,7 +1072,7 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		fo = display.getAvailableFollowers("MOUNT", null).keySet();
 		assertTrue("Initially mount list should be empty", fo.isEmpty());
 		
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, mab);
+		addAbility(AbilityCategory.FEAT, mab);
 		fo = display.getAvailableFollowers("Familiar", null).keySet();
 		assertTrue("Familiar list should still be empty", fo.isEmpty());
 		fo = display.getAvailableFollowers("MOUNT", null).keySet();
@@ -1083,7 +1080,7 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		assertEquals("Mount should be the giant race", giantRace.getKeyName(), fo.iterator().next().getRace().getKeyName());
 		assertEquals("Mount list should only have one entry", 1, fo.size());
 		
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, fab);
+		addAbility(AbilityCategory.FEAT, fab);
 		fo = display.getAvailableFollowers("Familiar", null).keySet();
 		assertFalse("Familiar list should not be empty anymore", fo.isEmpty());
 		assertEquals("Familiar should be the human race", human.getKeyName(), fo.iterator().next().getRace().getKeyName());
@@ -1167,7 +1164,7 @@ public class PlayerCharacterTest extends AbstractCharacterTestCase
 		assertEquals(0.0, display.movementOfType("Swim"), 0.1);
 		assertEquals(0.0, display.movementOfType("Fly"), 0.1);
 
-		pc.addAbilityNeedCheck(AbilityCategory.FEAT, quickFlySlowSwim);
+		addAbility(AbilityCategory.FEAT, quickFlySlowSwim);
 		pc.calcActiveBonuses();
 		pc.adjustMoveRates();
 		assertEquals(10.0, display.movementOfType("Swim"), 0.1);

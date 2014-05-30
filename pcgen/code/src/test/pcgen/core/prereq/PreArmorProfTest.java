@@ -35,7 +35,6 @@ import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.enumeration.Type;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
-import pcgen.core.AbilityUtilities;
 import pcgen.core.ArmorProf;
 import pcgen.core.Campaign;
 import pcgen.core.Equipment;
@@ -103,7 +102,7 @@ public class PreArmorProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "ARMORPROF|Full Plate");
 		assertTrue(Globals.getContext().ref.resolveReferences(null));
 
-		AbilityUtilities.modAbility(character, martialProf, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
 
 		assertTrue("Character has the Chainmail proficiency.", 
 					PrereqHandler.passes(prereq, character, null));
@@ -143,7 +142,7 @@ public class PreArmorProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "ARMORPROF|Full Plate");
 		assertTrue(Globals.getContext().ref.resolveReferences(null));
 		
-		AbilityUtilities.modAbility(character, martialProf, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
 
 		assertTrue("Character has one of Chainmail or Full Plate proficiency", 
 			PrereqHandler.passes(prereq, character, null));
@@ -181,7 +180,7 @@ public class PreArmorProfTest extends AbstractCharacterTestCase
 			TestHelper.makeAbility("Shield Proficiency (Single)", "FEAT", "General");
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "ARMORPROF|ARMORTYPE=Medium");
 		
-		AbilityUtilities.modAbility(character, martialProf, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
 		
 		assertTrue("Character has Medium Armor Proficiency", 
 				PrereqHandler.passes(prereq, character, null));
@@ -211,7 +210,7 @@ public class PreArmorProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "ARMORPROF|Breastplate");
 		assertTrue(Globals.getContext().ref.resolveReferences(null));
 		
-		AbilityUtilities.modAbility(character, martialProf, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
 
 		assertFalse("Character has the Breastplate proficiency.", 
 					PrereqHandler.passes(prereq, character, null));
@@ -251,7 +250,7 @@ public class PreArmorProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "ARMORPROF|ARMORTYPE=Medium");
 		assertTrue(Globals.getContext().ref.resolveReferences(null));
 
-		AbilityUtilities.modAbility(character, martialProf, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
 
 		assertTrue("Character has the Breastplate proficiency.", 
 					PrereqHandler.passes(prereq, character, null));
@@ -299,7 +298,7 @@ public class PreArmorProfTest extends AbstractCharacterTestCase
 		final String barStr =
 			"Bar	TYPE:General	DESC:See Text	BONUS:HP|CURRENTMAX|50";
 		featLoader.parseLine(Globals.getContext(), bar, barStr, cse);
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, bar);
+		addAbility(AbilityCategory.FEAT, bar);
 		
 		assertEquals("Character should have 50 bonus hp added.",
 					baseHp+50,
@@ -311,13 +310,13 @@ public class PreArmorProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "ARMORPROF|Full Plate");
 		assertTrue(Globals.getContext().ref.resolveReferences(null));
 		
-		AbilityUtilities.modAbility(character, martialProf, null, AbilityCategory.FEAT);
+		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
 		
 		Ability foo = new Ability();
 		final String fooStr =
 			"Foo	TYPE:General	DESC:See Text	BONUS:HP|CURRENTMAX|50|PREPROFWITHARMOR:1,Full Plate";
 		featLoader.parseLine(Globals.getContext(), foo, fooStr, cse);
-		character.addAbilityNeedCheck(AbilityCategory.FEAT, foo);
+		addAbility(AbilityCategory.FEAT, foo);
 		
 		assertEquals("Character has the Full Plate proficiency so the bonus should be added",
 					baseHp+50+50,

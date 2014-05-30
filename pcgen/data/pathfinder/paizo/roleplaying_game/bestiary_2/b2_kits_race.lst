@@ -296,7 +296,7 @@ SKILL:Perception		RANK:14
 SKILL:Sense Motive	RANK:14
 SKILL:Spellcraft		RANK:14
 SKILL:Stealth		RANK:14
-FEAT:Ability Focus (Roar ~ Leonal)
+FEAT:Ability Focus (Roar)
 FEAT:Dodge
 FEAT:Improved Initiative
 FEAT:Mobility
@@ -3074,7 +3074,7 @@ ALIGN:TN
 STAT:STR=11|DEX=11|CON=11|INT=10|WIS=10|CHA=10
 SKILL:Perception	RANK:4
 SKILL:Stealth	RANK:5
-FEAT:Ability Focus (Confusion ~ Gloomwing)
+FEAT:Ability Focus (Confusion)
 FEAT:Flyby Attack
 FEAT:Hover
 
@@ -3250,7 +3250,7 @@ STAT:STR=14|DEX=15|CON=13|INT=12|WIS=10|CHA=8
 CLASS:Ranger	LEVEL:1
 ABILITY:CATEGORY=Favored Class|Ranger
 #ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Favored Enemy|Favored Enemy (Vermin)
+ABILITY:CATEGORY=Favored Enemy|Favored Enemy ~ Vermin
 SKILL:Acrobatics
 SKILL:Climb
 SKILL:Handle Animal
@@ -3471,7 +3471,7 @@ LANGBONUS:Gnome
 CLASS:Sorcerer	LEVEL:1
 ABILITY:CATEGORY=Favored Class|Sorcerer
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Sorcerer Bloodline|Elemental Bloodline (Fire)
+ABILITY:CATEGORY=Sorcerer Bloodline|Sorcerer Bloodline ~ Elemental (Fire)
 SKILL:Bluff				RANK:1
 SKILL:Knowledge (Arcana)	RANK:1
 SKILL:Spellcraft			RANK:1
@@ -3557,7 +3557,7 @@ SKILL:Knowledge (Religion)	RANK:16
 SKILL:Perception			RANK:16
 SKILL:Sense Motive		RANK:16
 SKILL:Survival			RANK:16
-FEAT:Ability Focus (Fists of Lightning and Thunder ~ Marut)
+FEAT:Ability Focus (Fists of Lightning and Thunder)
 FEAT:Awesome Blow
 FEAT:Combat Casting
 FEAT:Dodge
@@ -3881,11 +3881,11 @@ SKILL:Swim				RANK:4
 FEAT:Power Attack
 FEAT:Run
 FEAT:Weapon Focus (Battleaxe)
-ABILITY:CATEGORY=Combat Style|Archery
-ABILITY:CATEGORY=Ranger Bonus Feat|Point-Blank Shot
-ABILITY:CATEGORY=Hunter's Bond|Hunting Companions
-ABILITY:CATEGORY=Favored Enemy|Favored Enemy (Humanoid (Orc))
-ABILITY:CATEGORY=Favored Terrain|Favored Terrain (Forest)
+ABILITY:CATEGORY=Combat Style|Ranger Combat Style ~ Archery
+ABILITY:CATEGORY=Ranger Bonus Feat|Ranger Bonus Feat ~ Point-Blank Shot
+ABILITY:CATEGORY=Hunter's Bond|Hunter's Bond ~ Hunting Companions
+ABILITY:CATEGORY=Favored Enemy|Favored Enemy ~ Humanoid (Orc)
+ABILITY:CATEGORY=Favored Terrain|Favored Terrain ~ Forest
 TEMPLATE:Lycanthrope
 ABILITY:CATEGORY=Lycanthrope Type|Natural Lycanthrope
 ABILITY:CATEGORY=Lycanthrope Kind|Werebear
@@ -3921,7 +3921,7 @@ SKILL:Perception			RANK:2
 SKILL:Profession (Farmer)	RANK:2
 FEAT:Power Attack
 FEAT:Toughness
-ABILITY:CATEGORY=Rage Power|Animal Fury ~ Rage Power
+ABILITY:CATEGORY=Rage Power|Rage Power ~ Animal Fury
 TEMPLATE:Lycanthrope
 ABILITY:CATEGORY=Lycanthrope Type|Natural Lycanthrope
 ABILITY:CATEGORY=Lycanthrope Kind|Wereboar
@@ -3970,8 +3970,8 @@ SKILL:Swim			RANK:4
 FEAT:Improved Initiative
 FEAT:Power Attack
 FEAT:Skill Focus (Stealth)
-ABILITY:CATEGORY=Rogue Talent|Bleeding Attack
-ABILITY:CATEGORY=Rogue Talent|Fast Stealth
+ABILITY:CATEGORY=Rogue Talent|Rogue Talent ~ Bleeding Attack
+ABILITY:CATEGORY=Rogue Talent|Rogue Talent ~ Fast Stealth
 TEMPLATE:Lycanthrope
 ABILITY:CATEGORY=Lycanthrope Type|Natural Lycanthrope
 ABILITY:CATEGORY=Lycanthrope Kind|Weretiger
@@ -4397,8 +4397,8 @@ CLASS:Fighter	LEVEL:2
 ABILITY:CATEGORY=Favored Class|Fighter
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Ogrekin Beneficial Deformity|Oversized Maw ~ Ogrekin
-ABILITY:CATEGORY=Ogrekin Disadvantageous Deformity|Weak Mind ~ Ogrekin
+ABILITY:CATEGORY=Ogrekin Beneficial Deformity|Ogrekin ~ Oversized Maw
+ABILITY:CATEGORY=Ogrekin Disadvantageous Deformity|Ogrekin ~ Weak Mind
 SKILL:Climb	RANK:2
 SKILL:Swim	RANK:2
 ABILITY:CATEGORY=Fighter Bonus Feat|Cleave
@@ -4478,7 +4478,7 @@ NAME:Poltergeist
 ALIGN:LE
 STAT:STR=10|DEX=11|CON=10|INT=11|WIS=10|CHA=10
 SKILL:Perception	RANK:3
-FEAT:Ability Focus (Frightener ~ Poltergeist)
+FEAT:Ability Focus (Frightener)
 FEAT:Alertness
 
 STARTPACK:Primate (Baboon) Default	TYPE:Default Monster.Animal	VISIBLE:QUALIFY	EQUIPBUY:0	PREMULT:1,[!PRERACE:1,%],[PRERACE:1,Primate (Baboon)]	SOURCEPAGE:p.212
@@ -5041,7 +5041,7 @@ SKILL:Perception			RANK:9
 SKILL:Sense Motive		RANK:9
 SKILL:Stealth			RANK:9
 SKILL:Use Magic Device		RANK:9
-FEAT:Ability Focus (Aura of Madness ~ Seugathi)
+FEAT:Ability Focus (Aura of Madness)
 FEAT:Combat Casting
 FEAT:Combat Reflexes
 FEAT:Improved Initiative
@@ -5095,7 +5095,7 @@ SKILL:Knowledge (Planes)	RANK:16
 SKILL:Perception			RANK:16
 SKILL:Spellcraft			RANK:16
 SKILL:Use Magic Device		RANK:16
-FEAT:Ability Focus (Blinding Light ~ Shining Child)
+FEAT:Ability Focus (Blinding Light)
 FEAT:Dodge
 FEAT:Improved Initiative
 FEAT:Lightning Reflexes
@@ -5564,7 +5564,7 @@ SKILL:Disguise		RANK:10
 SKILL:Perception		RANK:10
 SKILL:Sense Motive	RANK:10
 SKILL:Stealth		RANK:10
-FEAT:Ability Focus (Charisma Drain ~ Totenmaske)
+FEAT:Ability Focus (Charisma Drain)
 FEAT:Combat Expertise
 FEAT:Combat Reflexes
 FEAT:Improved Initiative
@@ -5664,7 +5664,7 @@ STAT:STR=13|DEX=12|CON=8|INT=10|WIS=15|CHA=14
 CLASS:Cleric	LEVEL:1
 ABILITY:CATEGORY=Favored Class|Cleric
 ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Channel Energy|Channel Positive Energy ~ Cleric
+ABILITY:CATEGORY=Channel Energy|Cleric ~ Channel Positive Energy
 SKILL:Diplomacy			RANK:1
 SKILL:Knowledge (Religion)	RANK:1
 DEITY:None	DOMAIN:Charm|Water
@@ -5777,7 +5777,7 @@ SKILL:Sense Motive		RANK:18
 SKILL:Spellcraft			RANK:18
 SKILL:Stealth			RANK:18
 SKILL:Survival			RANK:18
-FEAT:Ability Focus (Howl ~ Wendigo)
+FEAT:Ability Focus (Howl)
 FEAT:Critical Focus
 FEAT:Flyby Attack
 FEAT:Improved Critical (Claw)
@@ -6078,7 +6078,7 @@ CLASS:Rogue	LEVEL:2
 ABILITY:CATEGORY=Favored Class|Rogue
 #ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
 #ABILITY:CATEGORY=Favored Class Bonus|Favored Class Bonus ~ Hit Point
-ABILITY:CATEGORY=Rogue Talent|Combat Trick
+ABILITY:CATEGORY=Rogue Talent|Rogue Talent ~ Combat Trick
 SKILL:Acrobatics		RANK:1
 SKILL:Climb			RANK:1
 SKILL:Disable Device	RANK:2

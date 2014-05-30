@@ -23,10 +23,11 @@
 package pcgen.gui2.facade;
 
 import pcgen.AbstractCharacterTestCase;
+import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
-import pcgen.core.AbilityUtilities;
+import pcgen.core.Description;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.SettingsHandler;
@@ -66,18 +67,41 @@ public class Gui2InfoFactoryTest extends AbstractCharacterTestCase
 		ParseResult pr = st.parseToken(Globals.getContext(), choiceAbility, "SKILL|Perception|Acrobatics");
 		assertTrue(pr.passed());
 		Globals.getContext().commit();
-		Ability pcAbility =
-				pc.addAbilityNeedCheck(AbilityCategory.FEAT, choiceAbility);
-		AbilityUtilities.finaliseAbility(pcAbility, "Perception", pc,
+		finalize(choiceAbility, "Perception", pc,
 			AbilityCategory.FEAT);
 		assertEquals("Incorrect single choice", "Perception",
-			ca.getChoices(pcAbility));
+			ca.getChoices(choiceAbility));
 
-		AbilityUtilities.finaliseAbility(pcAbility, "Acrobatics", pc,
+		finalize(choiceAbility, "Acrobatics", pc,
 			AbilityCategory.FEAT);
-		assertEquals("Incorrect multiple choice", "Perception, Acrobatics",
-			ca.getChoices(pcAbility));
+		assertEquals("Incorrect multiple choice", "Acrobatics, Perception",
+			ca.getChoices(choiceAbility));
 	}
+	
+	/**
+	 * Verify getHTMLInfo for a temporary bonus.
+	 */
+	public void testGetHTMLInfoTempBonus()
+	{
+		PlayerCharacter pc = getCharacter();
+		Gui2InfoFactory infoFactory = new Gui2InfoFactory(pc);
+
+		Ability tbAbility =
+				TestHelper.makeAbility("Combat expertise",
+					AbilityCategory.FEAT, "General");
+		tbAbility.put(ObjectKey.MULTIPLE_ALLOWED, Boolean.FALSE);
+		final Description desc = new Description("CE Desc");
+		tbAbility.addToListFor(ListKey.DESCRIPTION, desc);
+		Globals.getContext().commit();
+		addAbility(AbilityCategory.FEAT, tbAbility);
+
+		TempBonusFacadeImpl tbf = new TempBonusFacadeImpl(tbAbility);
+
+		assertEquals("Unexpected temp bonus result",
+			"<html><b><font size=+1>Combat expertise</font></b> (Ability)<br>"
+				+ "<b>Desc:</b>&nbsp;CE Desc<br><b>Source:</b>&nbsp;</html>",
+			infoFactory.getHTMLInfo(tbf));
+	}	
 	
 	/* (non-Javadoc)
 	 * @see pcgen.AbstractCharacterTestCase#setUp()
